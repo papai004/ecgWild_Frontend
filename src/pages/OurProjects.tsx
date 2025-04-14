@@ -10,8 +10,8 @@ import { Button } from "antd";
 import { useState } from "react";
 import Donation from "../components/donation/Donation";
 import {
-  Heading,
-  Paragraph,
+  projectHeading,
+  projectParagraph,
   ourProjectsHeading1,
   ourProjectsHeading2,
   ourProjectsHeading3,
@@ -37,8 +37,8 @@ const OurProjects: React.FC = () => {
       <Navbar />
       <div className={Styles.container}>
         <div className={Styles.headingCard}>
-          <h1>{Heading}</h1>
-          <p>{Paragraph}</p>
+          <h1>{projectHeading}</h1>
+          <p>{projectParagraph}</p>
           <div className={Styles.headingCard_button}>
             <Button className={Styles.headingCard_btn} onClick={showDonation}>
               <b>Donate Now</b>
