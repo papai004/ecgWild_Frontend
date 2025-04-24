@@ -37,7 +37,6 @@ const Carousels: React.FC<Props> = ({ image1, image2, image3, heading1, heading2
                         <h1>{heading1}</h1>
                         <p>{paragraph}</p>
                         <div>
-                            <Button className={Styles.carousel_btn1}><b>Join an Expedition</b></Button>
                             <Button className={Styles.carousel_btn2} onClick={showDonation}><b>Donate Now</b></Button>
                         </div>
                     </div>
@@ -50,7 +49,6 @@ const Carousels: React.FC<Props> = ({ image1, image2, image3, heading1, heading2
                         <h1>{heading2}</h1>
                         <p>{paragraph}</p>
                         <div>
-                            <Button className={Styles.carousel_btn1}><b>Join an Expedition</b></Button>
                             <Button className={Styles.carousel_btn2} onClick={showDonation}><b>Donate Now</b></Button>
                         </div>
                     </div>
@@ -63,7 +61,6 @@ const Carousels: React.FC<Props> = ({ image1, image2, image3, heading1, heading2
                         <h1>{heading3}</h1>
                         <p>{paragraph}</p>
                         <div>
-                            <Button className={Styles.carousel_btn1}><b>Join an Expedition</b></Button>
                             <Button className={Styles.carousel_btn2} onClick={showDonation}><b>Donate Now</b></Button>
                         </div>
                     </div>
