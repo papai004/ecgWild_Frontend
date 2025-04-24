@@ -25,9 +25,3 @@
     background-color: rgb(241, 241, 44);
     border: none;
 }
-
-@media screen and (max-width: 920px) {
-    .container {
-        padding-top: 55px;
-    }
-}

@@ -29,7 +29,7 @@ const Carousels: React.FC<Props> = ({ image1, image2, image3, heading1, heading2
 
     return (
         <div className={Styles.carousel_container}>
-            <Carousel afterChange={onChange} autoplay>
+            <Carousel afterChange={onChange} autoplay autoplaySpeed={2000}>
                 <div className={Styles.carousel_item}>
                     <img src={image1} alt='first image' className={Styles.carousel_img} />
                     <div className={Styles.carousel_content}>

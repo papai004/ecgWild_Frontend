@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import CustomCard from "../components/CustomCard";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -6,8 +7,6 @@ import ourProjects1 from "../assets/project1.jpg";
 import ourProjects2 from "../assets/project2.jpg";
 import ourProjects3 from "../assets/project3.jpg";
 import ourProjects4 from "../assets/project4.png";
-import { Button } from "antd";
-import { useState } from "react";
 import Donation from "../components/donation/Donation";
 import {
   projectHeading,
@@ -20,9 +19,24 @@ import {
   ourProjectsParagraph2,
   ourProjectsParagraph3,
   ourProjectsParagraph4,
+  carouselItems,
 } from "../assets/data";
+import CustomCarousel from "../components/CustomCarousel";
+import { Button } from "antd";
+
+
+interface CarouselItem {
+  id: number;
+  title: string;
+  content: string;
+  imageUrl: string;
+}
 
 const OurProjects: React.FC = () => {
+
+    const [items, setItems] = useState<CarouselItem[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showDonation = () => {
@@ -31,6 +45,37 @@ const OurProjects: React.FC = () => {
   const handleCloseModal = (data: boolean) => {
     setIsModalOpen(data);
   };
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          setLoading(true);
+  
+          // API delay
+          await new Promise((resolve) => setTimeout(resolve, 500));
+  
+          setItems(carouselItems);
+          setError(null);
+        } catch (err) {
+          console.error("Error loading carousel data:", err);
+          setError("Failed to load carousel data. Please try again later.");
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchData();
+    }, []);
+  
+    if (loading) {
+      return <div>Loading data...</div>;
+    }
+  
+    if (error) {
+      return <div>Error: {error}</div>;
+    }
+
+  const heading = "Recent Projects";
 
   return (
     <>
@@ -61,6 +106,7 @@ const OurProjects: React.FC = () => {
           Card4_Paragraph={ourProjectsParagraph4}
           showOrNot={true}
         />
+        <CustomCarousel heading={heading} items={items} />
       </div>
       <Footer />
     </>

@@ -34,11 +34,6 @@
     border: none;
 }
 
-@media screen and (max-width: 920px) {
-    .carousel_container {
-        padding-top: 55px;
-    }
-}
 @media screen and (max-width: 420px) {
     .carousel_btn1, .carousel_btn2 {
         width: 100%;

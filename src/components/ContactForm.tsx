@@ -1,7 +1,7 @@
 import React from "react";
 import type { FormProps } from "antd";
 import { Form, Input, Button, Row, Col } from "antd";
-import Styles from '../styles/contactusForm.module.css' // <- Add a CSS file for responsive behavior
+import Styles from '../styles/contactusForm.module.css'
 
 type FieldType = {
   username?: string;
