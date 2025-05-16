@@ -3,7 +3,6 @@ import type { FormProps } from 'antd';
 import { Button, Form, Input, Select } from 'antd';
 import Styles from '../../styles/donationForm.module.css';
 import { Option } from 'antd/es/mentions';
-import TextArea from 'antd/es/input/TextArea';
 
 type FieldType = {
   name?: string;
