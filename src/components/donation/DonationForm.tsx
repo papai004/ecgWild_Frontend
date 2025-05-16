@@ -1,20 +1,30 @@
 import React from 'react';
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
 import Styles from '../../styles/donationForm.module.css';
+import { Option } from 'antd/es/mentions';
+import TextArea from 'antd/es/input/TextArea';
 
 type FieldType = {
   name?: string;
   email?: string;
   phone: number;
   pan: string;
-  terms?: string;
+  causes?: string;
+  cause?: string;
 };
 type Props = {
   formData: (data: object) => void,
 }
 
 const DonationForm: React.FC<Props> = ({formData}) => {
+
+  const [cause, setCause] = React.useState('');
+
+  const causeHandler = (value: string) => {
+    console.log(value);
+    setCause(value);
+  };
 
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
     console.log('Success:', values);
@@ -64,10 +74,29 @@ const DonationForm: React.FC<Props> = ({formData}) => {
       <Input placeholder='Pan Number'/>
     </Form.Item>
 
-    <Form.Item<FieldType> name="terms" valuePropName="checked" label={null}>
-      <Checkbox required>I accept the terms & conditions</Checkbox>
-    </Form.Item>
-
+    <Form.Item<FieldType> name="causes" className={Styles.form_item} rules={[{ required: true }]}>
+        <Select
+          placeholder="Select a cause for donation"
+          allowClear
+          value={cause}
+          onChange={causeHandler}
+        >
+          <Option value="Membership">Membership</Option>
+          <Option value="Donation">Donation</Option>
+          <Option value="Tribal Support">Tribal Support</Option>
+          <Option value="Disaster Management">Disaster Management</Option>
+          <Option value="Others">Others</Option>
+        </Select>
+      </Form.Item>
+      {cause === 'Others' && (
+        <Form.Item<FieldType>
+          name="cause"
+          className={Styles.form_item}
+          rules={[{ required: true, message: 'Please input your cause!' }]}
+        >
+          <Input placeholder='Other Cause'/>
+        </Form.Item>
+      )}
     <Form.Item className={Styles.form_item}  label={null}>
       <Button htmlType="submit" style={{backgroundColor: "#4CAF50",color: "white", width: "100%"}}>
         Donate
