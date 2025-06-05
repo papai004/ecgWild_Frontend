@@ -37,6 +37,7 @@ const Navbar = () => {
           <a href='/' className={isActive('/')}>Home</a>
           <a href='/projects' className={isActive('/projects')}>Our Projects</a>
           <a href='/gallery' className={isActive('/gallery')}>Our Gallery</a>
+          <a href='/aboutus' className={isActive('/aboutus')}>About Us</a>
           <a href='/contactus' className={isActive('/contactus')}>Contact Us</a>
         </div>
         <div className={Styles.menu}>

@@ -42,10 +42,18 @@ export const ourProjectsParagraph4 =
 export const contactusHeading = "Contact Us";
 export const contactusParagraph =
   "Join our mission to document climate change impacts and inspire actionable solutions through scientific expeditions.";
+export const aboutusHeading = "About Us";
+export const aboutusParagraph =
+  "Join our mission to document climate change impacts and inspire actionable solutions through scientific expeditions.";
 import activity1 from "../assets/activity1.jpeg";
-import image1 from "../assets/image1.png";
-import image2 from "../assets/image2.png";
-import image3 from "../assets/image3.jpeg";
+import image1 from "../assets/img1.jpg";
+import image2 from "../assets/img2.jpg";
+import image3 from "../assets/img3.jpg";
+import image4 from "../assets/img4.jpg";
+import image5 from "../assets/img5.jpg";
+import image6 from "../assets/img6.jpg";
+import image7 from "../assets/img7.jpg";
+import image8 from "../assets/img8.jpg";
 import activity2 from "../assets/activity2.jpeg";
 import activity3 from "../assets/activity3.png";
 import activity4 from "../assets/activity4.jpeg";
@@ -114,31 +122,31 @@ export const imageData = [
     id: 103, 
     title: "Place Name", 
     content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: activity1
+    imageUrl: image4
   },
   { 
     id: 104, 
     title: "Place Name", 
     content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: activity2
+    imageUrl: image5
   },
   { 
     id: 105, 
     title: "Place Name", 
     content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: activity3
+    imageUrl: image6
   },
   { 
     id: 106, 
     title: "Place Name", 
     content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: activity4
+    imageUrl: image7
   },
   { 
     id: 107, 
     title: "Place Name", 
     content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: activity5
+    imageUrl: image8
   }
 ];
 export const videoData = [
