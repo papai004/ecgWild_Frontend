@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import Styles from '../../styles/transaction.module.css';
-import QRCode from '../../assets/QR.pdf';
+import QRCode from '../../assets/UPI.png';
 
 type Props = {
   prevBtn: (data: boolean) => void,
@@ -15,9 +15,7 @@ const Transaction: React.FC<Props> = ({prevBtn}) => {
 
   return (
     <div className={Styles.container}>
-      <div className={Styles.qrCode}>
-      <object data={QRCode} type="application/pdf" width='100%' height='100%'></object>
-      </div>
+      <img src={QRCode} className={Styles.qrCode}  width='70%'/>
       <div className={Styles.border}></div>
       <div className={Styles.btn_container}>
       <Button className={Styles.btn}>UPI Payment</Button>
