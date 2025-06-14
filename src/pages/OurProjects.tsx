@@ -3,10 +3,11 @@ import CustomCard from "../components/CustomCard";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Styles from "../styles/projects.module.css";
-import ourProjects1 from "../assets/project1.jpg";
-import ourProjects2 from "../assets/project2.jpg";
-import ourProjects3 from "../assets/project3.jpg";
-import ourProjects4 from "../assets/project4.png";
+import ourProjects1 from "../assets/image1.png";
+import ourProjects2 from "../assets/img1.jpg";
+import ourProjects3 from "../assets/study.jpg";
+import ourProjects4 from "../assets/img8.jpg";
+import ourProjects5 from "../assets/img4.jpg";
 import Donation from "../components/donation/Donation";
 import {
   projectHeading,
@@ -19,6 +20,8 @@ import {
   ourProjectsParagraph2,
   ourProjectsParagraph3,
   ourProjectsParagraph4,
+  ourProjectsHeading5,
+  ourProjectsParagraph5,
   carouselItems,
 } from "../assets/data";
 import CustomCarousel from "../components/CustomCarousel";
@@ -98,12 +101,15 @@ const OurProjects: React.FC = () => {
           image2={ourProjects2}
           image3={ourProjects3}
           image4={ourProjects4}
+          image5={ourProjects5}
           Card2_Heading={ourProjectsHeading2}
           Card2_Paragraph={ourProjectsParagraph2}
           Card3_Heading={ourProjectsHeading3}
           Card3_Paragraph={ourProjectsParagraph3}
           Card4_Heading={ourProjectsHeading4}
           Card4_Paragraph={ourProjectsParagraph4}
+          Card5_Heading={ourProjectsHeading5}
+          Card5_Paragraph={ourProjectsParagraph5}
           showOrNot={true}
         />
         <CustomCarousel heading={heading} items={items} />

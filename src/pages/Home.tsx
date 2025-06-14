@@ -22,17 +22,11 @@ import {
   aboutusHeading1,
   aboutusHeading2,
   aboutusHeading3,
+  aboutusParagraph1Bold,
   aboutusParagraph1,
+  aboutusParagraph2Bold,
   aboutusParagraph2,
   aboutusParagraph3,
-  aboutusContent2Heading1,
-  aboutusContent2Paragraph1,
-  aboutusContent2Heading2,
-  aboutusContent2Paragraph2,
-  aboutusContent2Heading3,
-  aboutusContent2Paragraph3,
-  aboutusContent2Heading4,
-  aboutusContent2Paragraph4,
 } from "../assets/data";
 
 const Home: React.FC = () => {
@@ -64,20 +58,14 @@ const Home: React.FC = () => {
         >
           <CustomCard
             Card1_Heading={aboutusHeading1}
+            card1_Paragraph_Bold={aboutusParagraph1Bold}
             card1_Paragraph={aboutusParagraph1}
             image1={aboutus1}
             image2={aboutus2}
             image3={aboutus3}
             Card2_Heading={aboutusHeading2}
+            card2_Paragraph_Bold={aboutusParagraph2Bold}
             Card2_Paragraph={aboutusParagraph2}
-            Card2_Heading1={aboutusContent2Heading1}
-            Card2_Paragraph1={aboutusContent2Paragraph1}
-            Card2_Heading2={aboutusContent2Heading2}
-            Card2_Paragraph2={aboutusContent2Paragraph2}
-            Card2_Heading3={aboutusContent2Heading3}
-            Card2_Paragraph3={aboutusContent2Paragraph3}
-            Card2_Heading4={aboutusContent2Heading4}
-            Card2_Paragraph4={aboutusContent2Paragraph4}
             Card3_Heading={aboutusHeading3}
             Card3_Paragraph={aboutusParagraph3}
             showOrNot={false}

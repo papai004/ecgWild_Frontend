@@ -18,7 +18,7 @@ const HeadingCard: React.FC<Props> = ({ heading, paragraph, backgroundColor, chi
         <div className={Styles.heading} style={background_color}>
             <h2>{ heading }</h2>
             <div className={ Styles.underline }></div>
-            <div className={ Styles.paragraph }><p>{ paragraph }</p></div>
+            <div className={ Styles.paragraph }><p><strong>{ paragraph }</strong></p></div>
             <>
                 {children}
             </>

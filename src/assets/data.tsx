@@ -1,44 +1,45 @@
+//Home Data
 export const heading1 = "Wildlife Conservation";
 export const heading2 = "Bird Rescue";
 export const heading3 = "Stop Deforestation";
 export const paragraph =
-  "Join our mission to document and address climate change through various participation options";
+  "At Environment Conservation Group, conservation is not only our middle name—it is our heartbeat, the very soul of everything we do.";
 export const aboutusHeading1 = "Our Vision";
 export const aboutusHeading2 = "Our Mission";
 export const aboutusHeading3 = "Our Story";
+export const aboutusParagraph1Bold =
+  "A future where communities live in harmony with nature, empowered by knowledge and united in action for a sustainable planet.";
 export const aboutusParagraph1 =
-  "To foster a sustainable and climate-resilient India where communities thrive in harmony with nature, driven by environmental consciousness and indigenous wisdom.";
+  "We envision an India where every individual, from tribal regions to urban centers, plays an active role in conserving biodiversity, mitigating climate change, and nurturing the Earth for generations to come.";
+export const aboutusParagraph2Bold =
+  "To inspire and empower individuals, especially the youth, to protect nature through education, community engagement, and conservation action.";
 export const aboutusParagraph2 =
-  "The Environment Conservation Group is dedicated to protecting and restoring our natural environment through:";
-export const aboutusContent2Heading1 = "1.Research";
-export const aboutusContent2Paragraph1 =
-  "Conducting evidence-based research on climate change and ecosystem health.";
-export const aboutusContent2Heading2 = "2.Advocacy";
-export const aboutusContent2Paragraph2 =
-  "Engaging with policymakers and stakeholders to promote environmentally responsible policies and regulations.";
-export const aboutusContent2Heading3 = "3.Collaboration";
-export const aboutusContent2Paragraph3 =
-  "Partnering with local communities, organizations, and businesses to maximize our impact and achieve shared environmental goals.";
-export const aboutusContent2Heading4 = "4.Education";
-export const aboutusContent2Paragraph4 =
-  "Raising awareness about environmental issues and promoting sustainable practices through community outreach and educational programs.";
+  "We envision an India where every individual, from tribal regions to urban centers, plays an active role in conserving biodiversity, mitigating climate change, and nurturing the Earth for generations to come.";
 export const aboutusParagraph3 =
   "Founded in 2009, ECG was established by a group of passionate conservationists who were deeply concerned about the rapid degradation of the natural environment. Over the years, we have grown into a trusted voice for environmental advocacy in Tamil Nadu, working closely with local communities, schools, and governments to create meaningful change.";
-export const projectHeading = "Our Projects";
+
+
+//Projects Data
+export const projectHeading = "What We Do";
 export const projectParagraph =
   "Join our mission to document climate change impacts and inspire actionable solutions through scientific expeditions.";
-export const ourProjectsHeading1 = "Vulture Conservation";
+export const ourProjectsHeading1 = "Wildlife Conservation";
 export const ourProjectsParagraph1 =
-  "India’s vulture population has faced a steep decline in recent decades, and ECG is actively working to protect these critically endangered birds. Our vulture conservation project focuses on habitat protection, awareness campaigns, and collaboration with government bodies to regulate harmful substances.";
-export const ourProjectsHeading2 = "Habitat Restoration";
+  "Monitoring and documenting endangered species,habitat protection, and awareness drives to prevent human-wildlife conflict.";
+export const ourProjectsHeading2 = "SEEK Expeditions";
 export const ourProjectsParagraph2 =
-  "Through our reforestation efforts and land restoration projects, we aim to revive degraded ecosystems in and around Coimbatore. We organize regular tree-planting drives and engage with communities to help restore natural habitats vital for the survival of local wildlife.";
-export const ourProjectsHeading3 = "Wildlife Protection";
+  "It is a series of field-based journeys designed to bridge the gap between research and real-world conservation. Through SEEK, we venture into remote landscapes, biodiversity hotspots, and climate-affected regions to study wildlife, document ecological changes, and engage with local communities.";
+export const ourProjectsHeading3 = "Environmental Education";
 export const ourProjectsParagraph3 =
-  "The Nilgiri Biosphere Reserve is home to a diverse array of species, including elephants, tigers, and leopards. ECG plays a critical role in monitoring wildlife populations and preventing human-wildlife conflicts. Our wildlife conservation team works on protecting endangered species through research, community engagement, and conservation measures.";
-export const ourProjectsHeading4 = "Environmental Awareness";
+  "We engage students, teachers, and communities through interactive workshops, field visits, nature camps, and creative activities that make learning about the environment both fun and meaningful. From understanding local ecosystems and wildlife to exploring topics like climate change, waste management, and water conservation, our program fosters a sense of responsibility and wonder in young minds.";
+export const ourProjectsHeading4 = "Community Engagement";
 export const ourProjectsParagraph4 =
-  "We believe that education is the foundation of long-term change. ECG regularly conducts workshops, seminars, and school programs to raise awareness about the importance of environmental conservation, climate change, and sustainability. By empowering future generations, we aim to cultivate a culture of environmental stewardship.";
+  "This is all about building connections—between people, nature, and the solutions we need for a sustainable future. We work hand-in-hand with local communities, empowering them with knowledge, tools, and opportunities to become active participants in conservation. Whether it’s organizing clean-up drives, reviving traditional water systems, promoting sustainable livelihoods, or conducting awareness sessions in villages and urban neighborhoods, our approach is inclusive and grassroots-driven";
+export const ourProjectsHeading5 = "Advocacy and Outreach";
+export const ourProjectsParagraph5 = "ECG is dedicated to amplifying the voice of nature in public discourse. We engage with policymakers, media, academic institutions, and the general public to highlight urgent environmental issues and push for science-based, community-centered solutions. Through campaigns, petitions, public talks, media collaborations, and digital storytelling, we bring attention to challenges like habitat destruction, climate change, and pollution. Our outreach aims to not just inform, but to inspire action—mobilizing citizens, influencing policy, and shaping a culture where environmental responsibility becomes a shared civic duty.";
+
+
+//ContactUs Data
 export const contactusHeading = "Contact Us";
 export const contactusParagraph =
   "Join our mission to document climate change impacts and inspire actionable solutions through scientific expeditions.";
@@ -59,95 +60,96 @@ import activity3 from "../assets/activity3.png";
 import activity4 from "../assets/activity4.jpeg";
 import activity5 from "../assets/activity5.jpeg";
 export const carouselItems = [
-    { 
-      id: 101, 
-      title: "Place Name", 
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-      imageUrl: activity1
-    },
-    { 
-      id: 102, 
-      title: "Place Name", 
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-      imageUrl: activity2
-    },
-    { 
-      id: 103, 
-      title: "Place Name", 
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-      imageUrl: activity3
-    },
-    { 
-      id: 104, 
-      title: "Place Name", 
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-      imageUrl: activity4
-    },
-    { 
-      id: 105, 
-      title: "Place Name", 
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-      imageUrl: activity5
-    },
-    { 
-      id: 106, 
-      title: "Place Name", 
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-      imageUrl: activity2
-    },
-  ];
-  
-export const ourGalleryHeading = "Our Gallery";
-export const ourGalleryParagraph = "Join our mission to document climate change impacts and inspire actionable solutions through scientific expeditions."
-export const imageData = [
   {
-    id: 100,
-    title: "Place Name",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!",
-    imageUrl: image1
-  },
-  { 
-    id: 101, 
-    title: "Place Name", 
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: image2
+    id: 101,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: activity1,
   },
   {
     id: 102,
-    title: "Place Name",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!",
-    imageUrl: image3
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: activity2,
   },
-  { 
-    id: 103, 
-    title: "Place Name", 
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: image4
+  {
+    id: 103,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: activity3,
   },
-  { 
-    id: 104, 
-    title: "Place Name", 
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: image5
+  {
+    id: 104,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: activity4,
   },
-  { 
-    id: 105, 
-    title: "Place Name", 
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: image6
+  {
+    id: 105,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: activity5,
   },
-  { 
-    id: 106, 
-    title: "Place Name", 
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: image7
+  {
+    id: 106,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: activity2,
   },
-  { 
-    id: 107, 
-    title: "Place Name", 
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, tempora!", 
-    imageUrl: image8
-  }
+];
+
+export const ourGalleryHeading = "Our Gallery";
+export const ourGalleryParagraph =
+  "Join our mission to document climate change impacts and inspire actionable solutions through scientific expeditions.";
+export const imageData = [
+  {
+    id: 100,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: image1,
+  },
+  {
+    id: 101,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: image2,
+  },
+  {
+    id: 102,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: image3,
+  },
+  {
+    id: 103,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: image4,
+  },
+  {
+    id: 104,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: image5,
+  },
+  {
+    id: 105,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: image6,
+  },
+  {
+    id: 106,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: image7,
+  },
+  {
+    id: 107,
+    title: "Name of the Place",
+    content: "Description of the place",
+    imageUrl: image8,
+  },
 ];
 export const videoData = [
   {
@@ -177,5 +179,5 @@ export const videoData = [
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID_4",
     thumbnailUrl: "https://via.placeholder.com/300x200",
-  }
-]
+  },
+];
