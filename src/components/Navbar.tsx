@@ -12,13 +12,11 @@ const Navbar = () => {
     setCollapsed(!collapsed);
   };
 
-  // Set active tab based on current path
   useEffect(() => {
     const path = window.location.pathname;
     setActiveTab(path);
   }, []);
 
-  // Function to determine if a link is active
   const isActive = (path: string) => {
     return activeTab === path ? Styles.active : '';
   };
