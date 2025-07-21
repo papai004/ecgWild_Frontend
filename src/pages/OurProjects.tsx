@@ -10,23 +10,11 @@ import ourProjects4 from "../assets/img8.jpg";
 import ourProjects5 from "../assets/img4.jpg";
 import Donation from "../components/donation/Donation";
 import {
-  projectHeading,
-  projectParagraph,
-  ourProjectsHeading1,
-  ourProjectsHeading2,
-  ourProjectsHeading3,
-  ourProjectsHeading4,
-  ourProjectsParagraph1,
-  ourProjectsParagraph2,
-  ourProjectsParagraph3,
-  ourProjectsParagraph4,
-  ourProjectsHeading5,
-  ourProjectsParagraph5,
+  
   carouselItems,
 } from "../assets/data";
 import CustomCarousel from "../components/CustomCarousel";
 import { Button } from "antd";
-
 
 interface CarouselItem {
   id: number;
@@ -36,11 +24,30 @@ interface CarouselItem {
 }
 
 const OurProjects: React.FC = () => {
-
-    const [items, setItems] = useState<CarouselItem[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+  const [items, setItems] = useState<CarouselItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+
+   useEffect(() => {
+    async function fetchWordings() {
+      try {
+        const res = await fetch('/api/wordings');
+        const data = await res.json();
+        const map: { [key: string]: string } = {};
+        data.forEach((item: { KeyName: string; Value: string }) => {
+          map[item.KeyName] = item.Value;
+        });
+        setWordings(map);
+      } catch (error) {
+        console.error('Error fetching wordings:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchWordings();
+  }, []);
 
   const showDonation = () => {
     setIsModalOpen(true);
@@ -49,34 +56,32 @@ const OurProjects: React.FC = () => {
     setIsModalOpen(data);
   };
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          setLoading(true);
-  
-          // API delay
-          await new Promise((resolve) => setTimeout(resolve, 500));
-  
-          setItems(carouselItems);
-          setError(null);
-        } catch (err) {
-          console.error("Error loading carousel data:", err);
-          setError("Failed to load carousel data. Please try again later.");
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchData();
-    }, []);
-  
-    if (loading) {
-      return <div>Loading data...</div>;
-    }
-  
-    if (error) {
-      return <div>Error: {error}</div>;
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+      
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        setItems(carouselItems);
+        setError(null);
+      } catch (err) {
+        console.error("Error loading carousel data:", err);
+        setError("Failed to load carousel data. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading data...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   const heading = "Recent Projects";
 
@@ -85,8 +90,8 @@ const OurProjects: React.FC = () => {
       <Navbar />
       <div className={Styles.container}>
         <div className={Styles.headingCard}>
-          <h1>{projectHeading}</h1>
-          <p>{projectParagraph}</p>
+          <h1>{wordings.projectHeading}</h1>
+          <p>{wordings.projectParagraph}</p>
           <div className={Styles.headingCard_button}>
             <Button className={Styles.headingCard_btn} onClick={showDonation}>
               <b>Donate Now</b>
@@ -95,21 +100,21 @@ const OurProjects: React.FC = () => {
         </div>
         <Donation open={isModalOpen} close={handleCloseModal} />
         <CustomCard
-          Card1_Heading={ourProjectsHeading1}
-          card1_Paragraph={ourProjectsParagraph1}
+          Card1_Heading={wordings.ourProjectsHeading1}
+          card1_Paragraph={wordings.ourProjectsParagraph1}
           image1={ourProjects1}
           image2={ourProjects2}
           image3={ourProjects3}
           image4={ourProjects4}
           image5={ourProjects5}
-          Card2_Heading={ourProjectsHeading2}
-          Card2_Paragraph={ourProjectsParagraph2}
-          Card3_Heading={ourProjectsHeading3}
-          Card3_Paragraph={ourProjectsParagraph3}
-          Card4_Heading={ourProjectsHeading4}
-          Card4_Paragraph={ourProjectsParagraph4}
-          Card5_Heading={ourProjectsHeading5}
-          Card5_Paragraph={ourProjectsParagraph5}
+          Card2_Heading={wordings.ourProjectsHeading2}
+          Card2_Paragraph={wordings.ourProjectsParagraph2}
+          Card3_Heading={wordings.ourProjectsHeading3}
+          Card3_Paragraph={wordings.ourProjectsParagraph3}
+          Card4_Heading={wordings.ourProjectsHeading4}
+          Card4_Paragraph={wordings.ourProjectsParagraph4}
+          Card5_Heading={wordings.ourProjectsHeading5}
+          Card5_Paragraph={wordings.ourProjectsParagraph5}
           showOrNot={true}
         />
         <CustomCarousel heading={heading} items={items} />

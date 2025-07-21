@@ -1,43 +1,56 @@
 import { Button } from "antd";
+import { useEffect, useState } from "react";
 import Carousel from "../components/Carousel";
 import img1 from "../assets/carousel_img1.jpg";
 import img2 from "../assets/birds.jpg";
+// import img3 from "../assets/tree.jpg";
 import img3 from "../assets/tree.jpeg";
 import Navbar from "../components/Navbar";
 import CustomHeading from "../components/HeadingCard";
 import Styles from "../styles/home.module.css";
 import getInvolved from "../assets/getInvolved.svg";
 import Footer from "../components/Footer";
-import { useState } from "react";
 import Donation from "../components/donation/Donation";
 import CustomCard from "../components/CustomCard";
 import aboutus1 from "../assets/aboutus1.png";
 import aboutus2 from "../assets/aboutus2.jpg";
 import aboutus3 from "../assets/aboutus3.jpg";
-import {
-  heading1,
-  heading2,
-  heading3,
-  paragraph,
-  aboutusHeading1,
-  aboutusHeading2,
-  aboutusHeading3,
-  aboutusParagraph1Bold,
-  aboutusParagraph1,
-  aboutusParagraph2Bold,
-  aboutusParagraph2,
-  aboutusParagraph3,
-} from "../assets/data";
 
 const Home: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+  const [loading, setLoading] = useState(true);
 
   const showDonation = () => {
     setIsModalOpen(true);
   };
+
   const handleCloseModal = (data: boolean) => {
     setIsModalOpen(data);
   };
+
+  useEffect(() => {
+    async function fetchWordings() {
+      try {
+        const res = await fetch('/api/wordings');
+        const data = await res.json();
+        const map: { [key: string]: string } = {};
+        data.forEach((item: { KeyName: string; Value: string }) => {
+          map[item.KeyName] = item.Value;
+        });
+        setWordings(map);
+      } catch (error) {
+        console.error('Error fetching wordings:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchWordings();
+  }, []);
+
+  if (loading) {
+    return <></>;
+  }
 
   return (
     <>
@@ -47,33 +60,33 @@ const Home: React.FC = () => {
           image1={img1}
           image2={img2}
           image3={img3}
-          heading1={heading1}
-          heading2={heading2}
-          heading3={heading3}
+          heading1={wordings.heading1 || ''}
+          heading2={wordings.heading2 || ''}
+          heading3={wordings.heading3 || ''}
         />
         <CustomHeading
           heading="About Us"
-          paragraph={paragraph}
+          paragraph={wordings.paragraph || ''}
           backgroundColor="white"
         >
           <CustomCard
-            Card1_Heading={aboutusHeading1}
-            card1_Paragraph_Bold={aboutusParagraph1Bold}
-            card1_Paragraph={aboutusParagraph1}
+            Card1_Heading={wordings.aboutusHeading1 || ''}
+            card1_Paragraph_Bold={wordings.aboutusParagraph1Bold || ''}
+            card1_Paragraph={wordings.aboutusParagraph1 || ''}
             image1={aboutus1}
             image2={aboutus2}
             image3={aboutus3}
-            Card2_Heading={aboutusHeading2}
-            card2_Paragraph_Bold={aboutusParagraph2Bold}
-            Card2_Paragraph={aboutusParagraph2}
-            Card3_Heading={aboutusHeading3}
-            Card3_Paragraph={aboutusParagraph3}
+            Card2_Heading={wordings.aboutusHeading2 || ''}
+            card2_Paragraph_Bold={wordings.aboutusParagraph2Bold || ''}
+            Card2_Paragraph={wordings.aboutusParagraph2 || ''}
+            Card3_Heading={wordings.aboutusHeading3 || ''}
+            Card3_Paragraph={wordings.aboutusParagraph3 || ''}
             showOrNot={false}
           />
         </CustomHeading>
         <CustomHeading
           heading="Get Involved"
-          paragraph={paragraph}
+          paragraph={wordings.paragraph || ''}
           backgroundColor="#F9FAFB"
         >
           <div className={Styles.getinvolved}>

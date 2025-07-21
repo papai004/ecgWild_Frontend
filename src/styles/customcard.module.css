@@ -3,6 +3,7 @@
     flex-direction: row;
     gap: 30px;
     margin-bottom: 2rem;
+    margin-left: 10px;
 }
 
 .card_item_text {
@@ -27,6 +28,7 @@
     width: 50%;
     height: 300px;
     overflow: hidden;
+    margin-left: 4px;
 }
 
 .card_item_image {
@@ -34,6 +36,7 @@
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
+    margin-left: 4px;
 }
 
 .card_item2 {
@@ -72,9 +75,6 @@
 .showOrNot {
     display: none;
 }
-
-
-
 
 
 @media screen and (max-width: 675px) {

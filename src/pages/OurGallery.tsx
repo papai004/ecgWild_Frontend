@@ -36,10 +36,7 @@ const OurGallery: React.FC = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-
-        // API delay
         await new Promise((resolve) => setTimeout(resolve, 500));
-
         setItems(carouselItems);
         setError(null);
       } catch (err) {

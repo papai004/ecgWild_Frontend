@@ -1,183 +1,180 @@
-import React from 'react';
-import type { FormProps } from 'antd';
-import { Button, Form, Input, Select } from 'antd';
-import Styles from '../../styles/donationForm.module.css';
-import { Option } from 'antd/es/mentions';
+import { useState } from "react";
+import { Form, Input, InputNumber, Select, Button, message } from "antd";
 
-type FieldType = {
-  name?: string;
-  email?: string;
-  phone: string;
-  pan: string;
-  causes?: string;
-  cause?: string;
-};
+const { Option } = Select;
 
-type Props = {
-  formData: (data: object) => void,
-}
+const DonationForm = ({ verifyPayment }: any) => {
+  const [form] = Form.useForm();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-const DonationForm: React.FC<Props> = ({formData}) => {
-  const [cause, setCause] = React.useState('');
+  const handlePayment = async () => {
+    try {
+      const values = await form.validateFields();
+      console.log("Sending values to /api/payments/create-order:", values);
 
-  const causeHandler = (value: string) => {
-    console.log(value);
-    setCause(value);
-  };
-
-  const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-    console.log('Success:', values);
-    formData(values);
-  };
-  
-  const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
-  // Custom validation functions
-  const validateName = (_: any, value: string) => {
-    if (!value) {
-      return Promise.reject(new Error('Please input your name!'));
-    }
-    if (value.trim().length < 4) {
-      return Promise.reject(new Error('Name must be at least 4 characters long!'));
-    }
-    if (value.trim().length > 50) {
-      return Promise.reject(new Error('Name cannot exceed 50 characters!'));
-    }
-    if (!/^[a-zA-Z\s]+$/.test(value)) {
-      return Promise.reject(new Error('Name can only contain letters and spaces!'));
-    }
-    return Promise.resolve();
-  };
-
-  const validatePhone = (_: any, value: string) => {
-    if (!value) {
-      return Promise.reject(new Error('Please input your phone number!'));
-    }
-    // Remove any non-digit characters for validation
-    const phoneDigits = value.replace(/\D/g, '');
-    if (phoneDigits.length < 10) {
-      return Promise.reject(new Error('Phone number must be at least 10 digits!'));
-    }
-    if (phoneDigits.length > 15) {
-      return Promise.reject(new Error('Phone number cannot exceed 15 digits!'));
-    }
-    if (!/^[+]?[\d\s\-()]+$/.test(value)) {
-      return Promise.reject(new Error('Please enter a valid phone number!'));
-    }
-    return Promise.resolve();
-  };
-
-  const validatePAN = (_: any, value: string) => {
-    if (value && value.trim() !== '') {
-      const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
-      if (!panRegex.test(value.toUpperCase())) {
-        return Promise.reject(new Error('Please enter a valid PAN number (e.g., ABCDE1234F)!'));
+      if (!values.amount || isNaN(values.amount) || values.amount < 1) {
+        message.error("Please enter a valid donation amount (min ₹1).");
+        return;
       }
-    }
-    return Promise.resolve();
-  };
 
-  const validateEmail = (_: any, value: string) => {
-    if (!value) {
-      return Promise.reject(new Error('Please input your email!'));
-    }
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(value)) {
-      return Promise.reject(new Error('Please enter a valid email address!'));
-    }
-    if (value.length > 100) {
-      return Promise.reject(new Error('Email address cannot exceed 100 characters!'));
-    }
-    return Promise.resolve();
-  };
+      const response = await fetch("/api/payments/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: values.amount,
+          donor: values,
+        }),
+      });
 
-  const validateOtherCause = (_: any, value: string) => {
-    if (cause === 'Others') {
-      if (!value || value.trim() === '') {
-        return Promise.reject(new Error('Please specify your cause!'));
+      const orderData = await response.json();
+      console.log("Order Data received from backend:", orderData);
+
+      if (
+        !orderData.success ||
+        !orderData.key ||
+        !orderData.orderId ||
+        !orderData.amount
+      ) {
+        message.error("Failed to initiate payment. Invalid order details.");
+        console.error("Invalid orderData:", orderData);
+        return;
       }
-      if (value.length < 3) {
-        return Promise.reject(new Error('Cause description must be at least 3 characters long!'));
-      }
-      if (value.length > 200) {
-        return Promise.reject(new Error('Cause description cannot exceed 200 characters!'));
-      }
+
+      const options = {
+        key: orderData.key,
+        amount: orderData.amount,
+        currency: orderData.currency,
+        order_id: orderData.orderId,
+        name: "Environment Conservation Group",
+        description: "Donation Payment",
+        handler: (response: any) => {
+          console.log("Payment handler response:", response);
+          message.success("Payment Successful!");
+          verifyPayment(response, values);
+        },
+        prefill: {
+          name: values.name,
+          email: values.email,
+          contact: values.phone,
+        },
+        theme: { color: "#15803D" },
+      };
+
+      console.log("Opening Razorpay checkout with options:", options);
+
+      const rzp = new (window as any).Razorpay(options);
+
+      rzp.on("payment.failed", (response: any) => {
+        console.error("Razorpay payment failed:", response.error);
+        message.error("Payment failed. Please try again.");
+      });
+
+      rzp.open();
+    } catch (err) {
+      console.error("Error in handlePayment:", err);
+      message.error("Please fix the errors in the form!");
     }
-    return Promise.resolve();
   };
 
   return (
     <Form
-      name="donationform"
-      style={{ maxWidth: 600, marginTop: "1rem" }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
+      form={form}
+      layout="vertical"
+      onFieldsChange={() => {
+        const errors = form.getFieldsError();
+        const hasErrors = errors.some(({ errors }) => errors.length);
+
+        const values = form.getFieldsValue();
+        const requiredFilled =
+          values.name &&
+          values.email &&
+          values.phone &&
+          values.cause &&
+          values.amount;
+
+        setIsButtonDisabled(hasErrors || !requiredFilled);
+      }}
     >
-      <Form.Item<FieldType>
+      <Form.Item
+        label="Full Name"
         name="name"
-        rules={[{ validator: validateName }]}
-        className={Styles.form_item}
+        rules={[
+          { required: true, message: "Please enter your full name" },
+          { min: 4, message: "Minimum 4 characters" },
+          { max: 50, message: "Maximum 50 characters" },
+          {
+            pattern: /^[a-zA-Z\s]+$/,
+            message: "Only letters and spaces allowed",
+          },
+        ]}
       >
-        <Input 
-          placeholder='Full Name'
-          maxLength={50}
-          showCount
+        <Input placeholder="Full Name" maxLength={50} />
+      </Form.Item>
+
+      <Form.Item
+        label="Amount (INR)"
+        name="amount"
+        rules={[
+          { required: true, message: "Please enter donation amount" },
+          { type: "number", min: 1, message: "Minimum amount is ₹1" },
+        ]}
+      >
+        <InputNumber
+          placeholder="Enter amount (₹)"
+          min={1}
+          style={{ width: "100%" }}
         />
       </Form.Item>
 
-      <Form.Item<FieldType>
+      <Form.Item
+        label="Email Address"
         name="email"
-        rules={[{ validator: validateEmail }]}
-        className={Styles.form_item}
+        rules={[
+          { required: true, message: "Please enter your email" },
+          { type: "email", message: "Invalid email address" },
+          { max: 100, message: "Maximum 100 characters" },
+        ]}
       >
-        <Input 
-          placeholder='Email Address'
-          type="email"
-          maxLength={100}
-        />
+        <Input placeholder="Email Address" />
       </Form.Item>
 
-      <Form.Item<FieldType>
+      <Form.Item
+        label="Phone Number (+91 XXXXXXXXXX)"
         name="phone"
-        rules={[{ validator: validatePhone }]}
-        className={Styles.form_item}
+        rules={[
+          { required: true, message: "Please enter your phone number" },
+          {
+            pattern: /^[+]?[\d\s\-()]{10,15}$/,
+            message: "Invalid phone number",
+          },
+        ]}
       >
-        <Input 
-          placeholder='Phone Number (+91 XXXXXXXXXX)'
-          maxLength={20}
-        />
+        <Input placeholder="Phone Number" maxLength={15} />
       </Form.Item>
 
-      <Form.Item<FieldType>
+      <Form.Item
+        label="PAN Number (Optional)"
         name="pan"
-        rules={[{ validator: validatePAN }]}
-        className={Styles.form_item}
+        rules={[
+          {
+            pattern: /^$|^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
+            message: "Invalid PAN (ABCDE1234F)",
+          },
+        ]}
       >
-        <Input 
-          placeholder='PAN Number (Optional - ABCDE1234F)'
+        <Input
+          placeholder="ABCDE1234F"
           maxLength={10}
-          style={{ textTransform: 'uppercase' }}
-          onChange={(e) => {
-            e.target.value = e.target.value.toUpperCase();
-          }}
+          style={{ textTransform: "uppercase" }}
         />
       </Form.Item>
 
-      <Form.Item<FieldType> 
-        name="causes" 
-        className={Styles.form_item} 
-        rules={[{ required: true, message: 'Please select a cause for donation!' }]}
+      <Form.Item
+        label="Select a cause for donation"
+        name="cause"
+        rules={[{ required: true, message: "Please select a cause" }]}
       >
-        <Select
-          placeholder="Select a cause for donation"
-          allowClear
-          value={cause}
-          onChange={causeHandler}
-        >
+        <Select placeholder="Select a cause">
           <Option value="Membership">Membership</Option>
           <Option value="Donation">General Donation</Option>
           <Option value="Tribal Support">Tribal Support</Option>
@@ -186,36 +183,23 @@ const DonationForm: React.FC<Props> = ({formData}) => {
         </Select>
       </Form.Item>
 
-      {cause === 'Others' && (
-        <Form.Item<FieldType>
-          name="cause"
-          className={Styles.form_item}
-          rules={[{ validator: validateOtherCause }]}
-        >
-          <Input.TextArea 
-            placeholder='Please specify your cause for donation'
-            maxLength={200}
-            showCount
-            rows={3}
-          />
-        </Form.Item>
-      )}
-
-      <Form.Item className={Styles.form_item} label={null}>
-        <Button 
-          htmlType="submit" 
-          style={{
-            backgroundColor: "#4CAF50",
-            color: "white", 
-            width: "100%",
-            height: "40px",
-            fontSize: "16px",
-            fontWeight: "bold"
-          }}
-        >
-          Donate Now
-        </Button>
-      </Form.Item>
+      <Button
+        type="primary"
+        block
+        disabled={isButtonDisabled}
+        style={{
+          marginTop: 20,
+          backgroundColor: "#15803D",
+          border: "none",
+          color: "white",
+          height: "40px",
+          fontWeight: "bold",
+          opacity: isButtonDisabled ? 0.6 : 1,
+        }}
+        onClick={handlePayment}
+      >
+        Donate Now
+      </Button>
     </Form>
   );
 };
