@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import Carousel from "../components/Carousel";
 import img1 from "../assets/carousel_img1.jpg";
-import img2 from "../assets/birds.jpg";
+import img2 from "../assets/bird.png";
 import img3 from "../assets/tree.jpeg";
 import Navbar from "../components/Navbar";
 import CustomHeading from "../components/HeadingCard";
