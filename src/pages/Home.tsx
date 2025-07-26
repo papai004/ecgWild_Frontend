@@ -1,5 +1,6 @@
+import { useRef } from "react";
 import { Button } from "antd";
-import Carousel from "../components/Carousel";
+import Carousels from "../components/Carousel";
 import img1 from "../assets/carousel_img1.jpg";
 import img2 from "../assets/bird.png";
 import img3 from "../assets/tree.jpeg";
@@ -27,10 +28,14 @@ import {
   aboutusParagraph2Bold,
   aboutusParagraph2,
   aboutusParagraph3,
+  eventCalendarTitle,
 } from "../assets/data";
+import EventCalender from "../components/EventCalendar";
 
 const Home: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showEvent, setShowEvent] = useState(false);
+  const eventRef = useRef<HTMLDivElement | null>(null);
 
   const showDonation = () => {
     setIsModalOpen(true);
@@ -38,18 +43,29 @@ const Home: React.FC = () => {
   const handleCloseModal = (data: boolean) => {
     setIsModalOpen(data);
   };
+const handleEvents = () => {
+  setShowEvent(true);
+
+  setTimeout(() => {
+    eventRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, 100);
+};
+  const handleCloseEvent = () => {
+    setShowEvent(false);
+  };
 
   return (
     <>
       <div className={Styles.container}>
         <Navbar />
-        <Carousel
+        <Carousels
           image1={img1}
           image2={img2}
           image3={img3}
           heading1={heading1}
           heading2={heading2}
           heading3={heading3}
+          showEvents={handleEvents}
         />
         <CustomHeading
           heading="About Us"
@@ -71,6 +87,14 @@ const Home: React.FC = () => {
             showOrNot={false}
           />
         </CustomHeading>
+        {showEvent && (
+          <div ref={eventRef}>
+            <EventCalender
+              title={eventCalendarTitle}
+              close={handleCloseEvent}
+            />
+          </div>
+        )}
         <CustomHeading
           heading="Get Involved"
           paragraph={paragraph}
