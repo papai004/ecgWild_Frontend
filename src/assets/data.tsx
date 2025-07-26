@@ -17,7 +17,7 @@ export const aboutusParagraph2 =
   "We envision an India where every individual, from tribal regions to urban centers, plays an active role in conserving biodiversity, mitigating climate change, and nurturing the Earth for generations to come.";
 export const aboutusParagraph3 =
   "Founded in 2009, ECG was established by a group of passionate conservationists who were deeply concerned about the rapid degradation of the natural environment. Over the years, we have grown into a trusted voice for environmental advocacy in Tamil Nadu, working closely with local communities, schools, and governments to create meaningful change.";
-
+export const eventCalendarTitle = "Bird Rescue Camp";
 
 //Projects Data
 export const projectHeading = "What We Do";

@@ -1,8 +1,9 @@
+import { useRef } from "react";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
-import Carousel from "../components/Carousel";
+import Carousels from "../components/Carousel";
 import img1 from "../assets/carousel_img1.jpg";
-import img2 from "../assets/birds.jpg";
+import img2 from "../assets/bird.png";
 // import img3 from "../assets/tree.jpg";
 import img3 from "../assets/tree.jpeg";
 import Navbar from "../components/Navbar";
@@ -15,11 +16,29 @@ import CustomCard from "../components/CustomCard";
 import aboutus1 from "../assets/aboutus1.png";
 import aboutus2 from "../assets/aboutus2.jpg";
 import aboutus3 from "../assets/aboutus3.jpg";
+import {
+  heading1,
+  heading2,
+  heading3,
+  paragraph,
+  aboutusHeading1,
+  aboutusHeading2,
+  aboutusHeading3,
+  aboutusParagraph1Bold,
+  aboutusParagraph1,
+  aboutusParagraph2Bold,
+  aboutusParagraph2,
+  aboutusParagraph3,
+  eventCalendarTitle,
+} from "../assets/data";
+import EventCalender from "../components/EventCalendar";
 
 const Home: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wordings, setWordings] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(true);
+  const [showEvent, setShowEvent] = useState(false);
+  const eventRef = useRef<HTMLDivElement | null>(null);
 
   const showDonation = () => {
     setIsModalOpen(true);
@@ -51,18 +70,29 @@ const Home: React.FC = () => {
   if (loading) {
     return <></>;
   }
+const handleEvents = () => {
+  setShowEvent(true);
+
+  setTimeout(() => {
+    eventRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, 100);
+};
+  const handleCloseEvent = () => {
+    setShowEvent(false);
+  };
 
   return (
     <>
       <div className={Styles.container}>
         <Navbar />
-        <Carousel
+        <Carousels
           image1={img1}
           image2={img2}
           image3={img3}
           heading1={wordings.heading1 || ''}
           heading2={wordings.heading2 || ''}
           heading3={wordings.heading3 || ''}
+          showEvents={handleEvents}
         />
         <CustomHeading
           heading="About Us"
@@ -84,6 +114,14 @@ const Home: React.FC = () => {
             showOrNot={false}
           />
         </CustomHeading>
+        {showEvent && (
+          <div ref={eventRef}>
+            <EventCalender
+              title={eventCalendarTitle}
+              close={handleCloseEvent}
+            />
+          </div>
+        )}
         <CustomHeading
           heading="Get Involved"
           paragraph={wordings.paragraph || ''}

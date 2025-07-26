@@ -22,15 +22,17 @@
     text-align: center;
     color: white;
 }
-.carousel_btn2 {
+.carousel_btn {
     border-radius: 20px;
     background-color: rgb(241, 241, 44);
+    margin-left: 10px;
     border: none;
 }
 
 @media screen and (max-width: 420px) {
-    .carousel_btn2 {
+    .carousel_btn {
         width: 100%;
+        margin-top: 5px;
     }
   }
 @media screen and (max-width: 1100px) {
