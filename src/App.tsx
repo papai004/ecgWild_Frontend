@@ -6,6 +6,7 @@ import OurGallery from './pages/OurGallery';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import NotFound from './pages/NotFound';
+import AdminPanel from './pages/AdminPanel';
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/gallery" element={<OurGallery />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/admin-panel" element={<AdminPanel />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
