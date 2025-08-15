@@ -9,10 +9,11 @@
 }
 .carousel_img {
     width: 100%;
-    height: auto;
+    height: 120%;
     object-fit: cover;
     filter: contrast(90%);
     filter: brightness(70%);
+    
 }
 .carousel_content {
     position: absolute;

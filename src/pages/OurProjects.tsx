@@ -3,11 +3,11 @@ import CustomCard from "../components/CustomCard";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Styles from "../styles/projects.module.css";
-import ourProjects1 from "../assets/image1.png";
-import ourProjects2 from "../assets/img1.jpg";
-import ourProjects3 from "../assets/study.jpg";
-import ourProjects4 from "../assets/img8.jpg";
-import ourProjects5 from "../assets/img4.jpg";
+import {ourProjects1} from "../assets/data";
+import {ourProjects2} from "../assets/data";
+import {ourProjects3} from "../assets/data";
+import {ourProjects4} from "../assets/data";
+import {ourProjects5} from "../assets/data";
 import Donation from "../components/donation/Donation";
 import {
   projectHeading,

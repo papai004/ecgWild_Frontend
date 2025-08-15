@@ -7,26 +7,26 @@ import Styles from "../styles/aboutus.module.css";
 import { aboutusHeading, aboutusParagraph } from "../assets/data";
 
 // You'll need to import these images - add them to your assets folder
-import missionImg from '../assets/logo.jpg';
-import visionImg from '../assets/logo.jpg';
-import impactImg from '../assets/logo.jpg';
-import seekExpeditionImg from '../assets/logo.jpg';
+import { missionImg } from "../assets/data";
+import { visionImg } from "../assets/data";
+import { impactImg } from "../assets/data";
+import { seekExpeditionImg } from "../assets/data";
 
 // Team member photos - add these to your assets folder
-import saleemImg from '../assets/logo.jpg';
-import stephenImg from '../assets/logo.jpg';
-import saravananImg from '../assets/logo.jpg';
-import shaimaImg from '../assets/logo.jpg';
+import { saleemImg } from "../assets/data";
+import { stephenImg } from "../assets/data";
+import { saravananImg } from "../assets/data";
+import { shaimaImg } from "../assets/data";
 
 // Advisor photos
-import drAzeezImg from '../assets/logo.jpg';
-import drVijayImg from '../assets/logo.jpg';
-import drAnirudhaImg from '../assets/logo.jpg';
+import { drAzeezImg } from "../assets/data";
+import { drVijayImg } from "../assets/data";
+import { drAnirudhaImg } from "../assets/data";
 
 // Partner logos - add these to your assets folder
-import partner1Logo from '../assets/logo.jpg';
-import partner2Logo from '../assets/logo.jpg';
-import partner3Logo from '../assets/logo.jpg';
+import { partner1Logo } from "../assets/data";
+import { partner2Logo } from "../assets/data";
+import { partner3Logo } from "../assets/data";
 
 const AboutUs: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,7 +42,7 @@ const AboutUs: React.FC = () => {
   return (
     <>
       <Navbar />
-      
+
       {/* Hero Section */}
       <div className={Styles.hero_container}>
         <div className={Styles.headingCard}>
@@ -62,22 +62,29 @@ const AboutUs: React.FC = () => {
           <div className={Styles.about_content}>
             <div className={Styles.about_text}>
               <p>
-                At Environment Conservation Group, conservation is not only our middle name—it is our heartbeat, 
-                the very soul of everything we do. Rooted in the vibrant city of Coimbatore and active across India, 
-                we are a passionate collective of environmentalists, educators, scientists, and volunteers dedicated 
-                to protecting our planet's precious biodiversity and building a more sustainable future for all.
+                At Environment Conservation Group, conservation is not only our
+                middle name—it is our heartbeat, the very soul of everything we
+                do. Rooted in the vibrant city of Coimbatore and active across
+                India, we are a passionate collective of environmentalists,
+                educators, scientists, and volunteers dedicated to protecting
+                our planet's precious biodiversity and building a more
+                sustainable future for all.
               </p>
               <p>
-                Founded on the belief that awareness is the first step toward meaningful action, we engage communities, 
-                inspire youth, and collaborate with institutions to address some of the most urgent environmental 
-                challenges of our time. Whether it's saving endangered species, protecting fragile ecosystems, or 
-                promoting sustainable living practices, our work is grounded in a deep respect for nature and a 
-                commitment to science-based conservation.
+                Founded on the belief that awareness is the first step toward
+                meaningful action, we engage communities, inspire youth, and
+                collaborate with institutions to address some of the most urgent
+                environmental challenges of our time. Whether it's saving
+                endangered species, protecting fragile ecosystems, or promoting
+                sustainable living practices, our work is grounded in a deep
+                respect for nature and a commitment to science-based
+                conservation.
               </p>
               <p>
-                We believe that education is empowerment. Through interactive workshops, field visits, documentary 
-                screenings, and school programs, we equip the next generation with the knowledge and tools they need 
-                to become stewards of the environment.
+                We believe that education is empowerment. Through interactive
+                workshops, field visits, documentary screenings, and school
+                programs, we equip the next generation with the knowledge and
+                tools they need to become stewards of the environment.
               </p>
             </div>
           </div>
@@ -90,7 +97,7 @@ const AboutUs: React.FC = () => {
           <div className={Styles.section_header}>
             <h2>Mission & Vision</h2>
           </div>
-          
+
           <div className={Styles.mission_vision_grid}>
             {/* Mission */}
             <div className={Styles.mission_card}>
@@ -100,14 +107,17 @@ const AboutUs: React.FC = () => {
               <div className={Styles.card_content}>
                 <h3>Mission Statement</h3>
                 <p>
-                  To inspire and empower individuals, especially the youth, to protect nature through education, 
-                  community engagement, and conservation action.
+                  To inspire and empower individuals, especially the youth, to
+                  protect nature through education, community engagement, and
+                  conservation action.
                 </p>
                 <p>
-                  We strive to bridge the gap between science, indigenous wisdom, and public participation by 
-                  creating awareness about wildlife, climate change, and sustainable living. Through grassroots 
-                  outreach, research, and field expeditions, we promote ecological balance and foster a generation 
-                  of environmentally conscious citizens.
+                  We strive to bridge the gap between science, indigenous
+                  wisdom, and public participation by creating awareness about
+                  wildlife, climate change, and sustainable living. Through
+                  grassroots outreach, research, and field expeditions, we
+                  promote ecological balance and foster a generation of
+                  environmentally conscious citizens.
                 </p>
               </div>
             </div>
@@ -117,13 +127,15 @@ const AboutUs: React.FC = () => {
               <div className={Styles.card_content}>
                 <h3>Vision</h3>
                 <p>
-                  A future where communities live in harmony with nature, empowered by knowledge and united in 
-                  action for a sustainable planet.
+                  A future where communities live in harmony with nature,
+                  empowered by knowledge and united in action for a sustainable
+                  planet.
                 </p>
                 <p>
-                  We envision an India where every individual, from tribal regions to urban centers, plays an 
-                  active role in conserving biodiversity, mitigating climate change, and nurturing the Earth 
-                  for generations to come.
+                  We envision an India where every individual, from tribal
+                  regions to urban centers, plays an active role in conserving
+                  biodiversity, mitigating climate change, and nurturing the
+                  Earth for generations to come.
                 </p>
               </div>
               <div className={Styles.card_image}>
@@ -144,15 +156,20 @@ const AboutUs: React.FC = () => {
             <div className={Styles.seek_text}>
               <h2>SEEK Expeditions</h2>
               <p>
-                One of our flagship initiatives, <strong>SEEK Expeditions</strong> stands as a vibrant testament 
-                to our mission in motion. This dynamic, countrywide journey unites scientists, conservationists, 
-                storytellers, and local communities in a shared quest to uncover and document the real-time impact 
-                of conservation efforts across India's richly diverse ecological landscapes.
+                One of our flagship initiatives,{" "}
+                <strong>SEEK Expeditions</strong> stands as a vibrant testament
+                to our mission in motion. This dynamic, countrywide journey
+                unites scientists, conservationists, storytellers, and local
+                communities in a shared quest to uncover and document the
+                real-time impact of conservation efforts across India's richly
+                diverse ecological landscapes.
               </p>
               <p>
-                Blending cutting-edge science with the wisdom of indigenous traditions and the lived experiences 
-                of people on the ground, SEEK crafts powerful, immersive narratives that do more than just 
-                inform—they inspire action, ignite curiosity, and build a deeper connection to the natural world.
+                Blending cutting-edge science with the wisdom of indigenous
+                traditions and the lived experiences of people on the ground,
+                SEEK crafts powerful, immersive narratives that do more than
+                just inform—they inspire action, ignite curiosity, and build a
+                deeper connection to the natural world.
               </p>
             </div>
           </div>
@@ -166,16 +183,20 @@ const AboutUs: React.FC = () => {
             <div className={Styles.impact_text}>
               <h2>Our Impact</h2>
               <p>
-                At Environment Conservation Group, our impact is measured not just in numbers, but in the lives 
-                we touch and the ecosystems we help protect. Over the years, we have reached thousands of students 
-                through our education programs, empowered local communities to lead conservation efforts, and 
-                contributed critical data for wildlife protection and policy change.
+                At Environment Conservation Group, our impact is measured not
+                just in numbers, but in the lives we touch and the ecosystems we
+                help protect. Over the years, we have reached thousands of
+                students through our education programs, empowered local
+                communities to lead conservation efforts, and contributed
+                critical data for wildlife protection and policy change.
               </p>
               <p>
-                Our initiatives have led to reduced roadkill in key areas, revival of local water bodies, and 
-                greater awareness of sustainable practices in schools and neighborhoods. Most importantly, we've 
-                inspired a growing network of young leaders, volunteers, and citizens who are now champions of 
-                change for a greener, more resilient planet.
+                Our initiatives have led to reduced roadkill in key areas,
+                revival of local water bodies, and greater awareness of
+                sustainable practices in schools and neighborhoods. Most
+                importantly, we've inspired a growing network of young leaders,
+                volunteers, and citizens who are now champions of change for a
+                greener, more resilient planet.
               </p>
             </div>
             <div className={Styles.impact_image}>
@@ -190,9 +211,12 @@ const AboutUs: React.FC = () => {
         <div className={Styles.container}>
           <div className={Styles.section_header}>
             <h2>Our Team</h2>
-            <p>Meet the dedicated professionals working to protect our environment</p>
+            <p>
+              Meet the dedicated professionals working to protect our
+              environment
+            </p>
           </div>
-          
+
           <div className={Styles.team_grid}>
             <div className={Styles.team_member}>
               <div className={Styles.member_image}>
@@ -279,16 +303,19 @@ const AboutUs: React.FC = () => {
           <div className={Styles.section_header}>
             <h2>Collaboration for Conservation</h2>
             <p>
-              At Environment Conservation Group (ECG), we believe that protecting the planet is a collective effort. 
-              Our journey has been enriched by the support, knowledge, and contributions of our partners—ranging 
-              from conservation organizations and scientific institutions to private enterprises and local communities.
+              At Environment Conservation Group (ECG), we believe that
+              protecting the planet is a collective effort. Our journey has been
+              enriched by the support, knowledge, and contributions of our
+              partners—ranging from conservation organizations and scientific
+              institutions to private enterprises and local communities.
             </p>
             <p>
-              Each partnership helps amplify our impact, reach wider audiences, and combine expertise to tackle 
-              the interconnected challenges of climate change, biodiversity loss, and environmental degradation.
+              Each partnership helps amplify our impact, reach wider audiences,
+              and combine expertise to tackle the interconnected challenges of
+              climate change, biodiversity loss, and environmental degradation.
             </p>
           </div>
-          
+
           <div className={Styles.partners_grid}>
             <div className={Styles.partner_logo}>
               <img src={partner1Logo} alt="Partner 1" />
@@ -309,11 +336,18 @@ const AboutUs: React.FC = () => {
           <div className={Styles.cta_content}>
             <h2>Join Our Movement</h2>
             <p>
-              In a time of climate uncertainty and ecological crisis, our message is one of hope, action, and 
-              collective responsibility. We invite every citizen—student, farmer, policymaker, or business 
-              leader—to walk with us on this path. Because conservation is not a task for a few—it's a movement for all.
+              In a time of climate uncertainty and ecological crisis, our
+              message is one of hope, action, and collective responsibility. We
+              invite every citizen—student, farmer, policymaker, or business
+              leader—to walk with us on this path. Because conservation is not a
+              task for a few—it's a movement for all.
             </p>
-            <p><strong>After all, environment is our first name, and conservation is our promise.</strong></p>
+            <p>
+              <strong>
+                After all, environment is our first name, and conservation is
+                our promise.
+              </strong>
+            </p>
           </div>
         </div>
       </section>

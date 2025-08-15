@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal, Steps, Flex, theme } from "antd";
-import Styles from '../../styles/donation.module.css';
-import donationlogo from '../../assets/donationlogo.svg';
+import Styles from "../../styles/donation.module.css";
+import { donationlogo } from "../../assets/data";
 import DonationForm from "./DonationForm";
 import Transaction from "./Transaction";
 
@@ -11,44 +11,57 @@ type Props = {
 };
 
 const Donation: React.FC<Props> = ({ open, close }) => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
 
   const donationHandler = (data: object) => {
-    if(data !== null){
+    if (data !== null) {
       setCurrent(current + 1);
     }
-  }
-  const prevBtnHandler =(data: boolean) => {
-    if(data) {
+  };
+  const prevBtnHandler = (data: boolean) => {
+    if (data) {
       setCurrent(current - 1);
     }
-  }
-  
+  };
+
   const steps = [
     {
-      title: 'Step1',
-      content: <div className={Styles.container}>
-        <div className={Styles.left_container}>
-          <img src={donationlogo} className={Styles.donation_svg} width={100} height={100} />
-          <h2>Save Nature and Life</h2>
-          <p>Join our mission to document and address climate change through various participation options</p>
+      title: "Step1",
+      content: (
+        <div className={Styles.container}>
+          <div className={Styles.left_container}>
+            <img
+              src={donationlogo}
+              className={Styles.donation_svg}
+              width={100}
+              height={100}
+            />
+            <h2>Save Nature and Life</h2>
+            <p>
+              Join our mission to document and address climate change through
+              various participation options
+            </p>
+          </div>
+          <div className={Styles.right_container}>
+            <DonationForm formData={donationHandler} />
+          </div>
         </div>
-        <div className={Styles.right_container}>
-          <DonationForm formData={donationHandler}/>
-        </div>
-      </div>,
+      ),
     },
     {
-      title: 'Step2',
-      content: <div><Transaction prevBtn={prevBtnHandler}/></div>,
+      title: "Step2",
+      content: (
+        <div>
+          <Transaction prevBtn={prevBtnHandler} />
+        </div>
+      ),
     },
-    {
-      title: 'Step3',
-      content: <div>This is 3rd content</div>,
-    },
+    // {
+    //   title: "Step3",
+    //   content: <div>This is 3rd content</div>,
+    // },
   ];
 
   const handleCancel = () => {
@@ -75,15 +88,20 @@ const Donation: React.FC<Props> = ({ open, close }) => {
 
   return (
     <Flex vertical gap="middle" align="flex-start">
-      <Modal open={open} onCancel={handleCancel} footer={null} width={{
-        xs: '90%',
-        sm: '80%',
-        md: '70%',
-        lg: '60%',
-        xl: '50%',
-        xxl: '40%',
-      }}>
-        <Steps current={current} items={items} style={{marginTop: 20}}/>
+      <Modal
+        open={open}
+        onCancel={handleCancel}
+        footer={null}
+        width={{
+          xs: "90%",
+          sm: "80%",
+          md: "70%",
+          lg: "60%",
+          xl: "50%",
+          xxl: "40%",
+        }}
+      >
+        <Steps current={current} items={items} style={{ marginTop: 20 }} />
         <div style={contentStyle}>{steps[current].content}</div>
         <div style={{ marginTop: 24 }}>
           {/* {current < steps.length - 1 && (
@@ -104,7 +122,7 @@ const Donation: React.FC<Props> = ({ open, close }) => {
         </div>
       </Modal>
     </Flex>
-  )
+  );
 };
 
 export default Donation;

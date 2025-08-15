@@ -74,6 +74,47 @@ export const image6 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/
 export const image7 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img7.jpg";
 export const image8 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img8.jpg";
 
+export const QRCode = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/UPI.png";
+export const donationlogo = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/donationlogo.svg";
+export const logo = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const locationImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/location.jpeg";
+export const missionImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const visionImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const impactImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const seekExpeditionImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const saleemImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const stephenImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const saravananImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const shaimaImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const drAzeezImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const drVijayImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const drAnirudhaImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const partner1Logo = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const partner2Logo = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const partner3Logo = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const ourProjects1 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/image1.png";
+export const ourProjects2 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img1.jpg";
+export const ourProjects3 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/study.jpg";
+export const ourProjects4 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img8.jpg";
+export const ourProjects5 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img4.jpg";
+export const img1 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/carousel_img1.jpg";
+export const img2 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/bird.png";
+export const img3 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/tree.jpeg";
+export const aboutus1 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/aboutus1.png";
+export const aboutus2 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/aboutus2.jpg";
+export const aboutus3 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/aboutus3.jpg";
+export const getInvolved = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/getInvolved.svg";
+
+
+
+
+
+
+
+
+
+
+
 export const carouselItems = [
   {
     id: 101,

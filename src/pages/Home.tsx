@@ -1,20 +1,20 @@
 import { useRef } from "react";
 import { Button } from "antd";
 import Carousels from "../components/Carousel";
-import img1 from "../assets/carousel_img1.jpg";
-import img2 from "../assets/bird.png";
-import img3 from "../assets/tree.jpeg";
+import {img1} from "../assets/data";
+import {img2} from "../assets/data";
+import {img3} from "../assets/data";
 import Navbar from "../components/Navbar";
 import CustomHeading from "../components/HeadingCard";
 import Styles from "../styles/home.module.css";
-import getInvolved from "../assets/getInvolved.svg";
+import {getInvolved} from "../assets/data";
 import Footer from "../components/Footer";
 import { useState } from "react";
 import Donation from "../components/donation/Donation";
 import CustomCard from "../components/CustomCard";
-import aboutus1 from "../assets/aboutus1.png";
-import aboutus2 from "../assets/aboutus2.jpg";
-import aboutus3 from "../assets/aboutus3.jpg";
+import {aboutus1} from "../assets/data";
+import {aboutus2} from "../assets/data";
+import {aboutus3} from "../assets/data";
 import {
   heading1,
   heading2,

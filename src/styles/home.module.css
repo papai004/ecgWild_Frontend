@@ -48,7 +48,7 @@
     border-radius: 25px;
     width: calc(50%);
     height: 220px;
-    background-image: url('../assets/getInvolved1.jpg');
+    background-image: url("https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/getInvolved1.jpg");
     background-size: cover;
     background-position: center top 66%;
     position: relative;
