@@ -46,7 +46,7 @@ const ContactUs: React.FC = () => {
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
               <MailOutlined style={{fontSize: '24px', color: '#4CAF50'}}/>
-              <p>Email: Info@exaample.com</p>
+              <p>Email: info@ecgwild.org</p>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
             <EnvironmentOutlined style={{fontSize: '24px', color: '#4CAF50'}}/>

@@ -3,6 +3,8 @@
     flex-direction: row;
     gap: 30px;
     margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
 }
 
 .card_item_text {
@@ -27,6 +29,8 @@
     width: 50%;
     height: 300px;
     overflow: hidden;
+     margin-left: 1rem;
+     margin-right: 0.5rem;
 }
 
 .card_item_image {

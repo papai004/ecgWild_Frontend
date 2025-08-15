@@ -29,7 +29,7 @@ const Navbar = () => {
         </div>
         <div className={Styles.navbar_left_heading}>
           <h2 className={Styles.navbar_left_heading_content1}>Environment Conservation Group</h2>
-          <h5 className={Styles.navbar_left_heading_content2}>Feel the pulse of nature</h5>
+          <h4 className={Styles.navbar_left_heading_content2}>Feel the pulse of nature</h4>
         </div>
         <div className={Styles.navbar_right_content}>
           <a href='/' className={isActive('/')}>Home</a>

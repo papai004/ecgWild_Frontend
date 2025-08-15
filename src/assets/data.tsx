@@ -46,19 +46,34 @@ export const contactusParagraph =
 export const aboutusHeading = "About Us";
 export const aboutusParagraph =
   "Join our mission to document climate change impacts and inspire actionable solutions through scientific expeditions.";
-import activity1 from "../assets/activity1.jpeg";
-import image1 from "../assets/img1.jpg";
-import image2 from "../assets/img2.jpg";
-import image3 from "../assets/img3.jpg";
-import image4 from "../assets/img4.jpg";
-import image5 from "../assets/img5.jpg";
-import image6 from "../assets/img6.jpg";
-import image7 from "../assets/img7.jpg";
-import image8 from "../assets/img8.jpg";
-import activity2 from "../assets/activity2.jpeg";
-import activity3 from "../assets/activity3.png";
-import activity4 from "../assets/activity4.jpeg";
-import activity5 from "../assets/activity5.jpeg";
+// import activity1 from "../assets/activity1.jpeg";
+// import image1 from "../assets/img1.jpg";
+// import image2 from "../assets/img2.jpg";
+// import image3 from "../assets/img3.jpg";
+// import image4 from "../assets/img4.jpg";
+// import image5 from "../assets/img5.jpg";
+// import image6 from "../assets/img6.jpg";
+// import image7 from "../assets/img7.jpg";
+// import image8 from "../assets/img8.jpg";
+// import activity2 from "../assets/activity2.jpeg";
+// import activity3 from "../assets/activity3.png";
+// import activity4 from "../assets/activity4.jpeg";
+// import activity5 from "../assets/activity5.jpeg";
+
+export const activity1 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/activity1.jpeg";
+export const activity2 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/activity2.jpeg";
+export const activity3 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/activity3.png";
+export const activity4 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/activity4.jpeg";
+export const activity5 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/activity5.jpeg";
+export const image1 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img1.jpg";
+export const image2 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img2.jpg";
+export const image3 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img3.jpg";
+export const image4 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img4.jpg";
+export const image5 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img5.jpg";
+export const image6 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img6.jpg";
+export const image7 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img7.jpg";
+export const image8 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/img8.jpg";
+
 export const carouselItems = [
   {
     id: 101,
