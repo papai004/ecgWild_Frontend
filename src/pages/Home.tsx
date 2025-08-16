@@ -1,41 +1,44 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "antd";
 import Carousels from "../components/Carousel";
-import {img1} from "../assets/data";
-import {img2} from "../assets/data";
-import {img3} from "../assets/data";
+import { img1 } from "../assets/data";
+import { img2 } from "../assets/data";
+import { img3 } from "../assets/data";
 import Navbar from "../components/Navbar";
 import CustomHeading from "../components/HeadingCard";
 import Styles from "../styles/home.module.css";
-import {getInvolved} from "../assets/data";
+import { getInvolved } from "../assets/data";
 import Footer from "../components/Footer";
 import { useState } from "react";
 import Donation from "../components/donation/Donation";
 import CustomCard from "../components/CustomCard";
-import {aboutus1} from "../assets/data";
-import {aboutus2} from "../assets/data";
-import {aboutus3} from "../assets/data";
-import {
-  heading1,
-  heading2,
-  heading3,
-  paragraph,
-  aboutusHeading1,
-  aboutusHeading2,
-  aboutusHeading3,
-  aboutusParagraph1Bold,
-  aboutusParagraph1,
-  aboutusParagraph2Bold,
-  aboutusParagraph2,
-  aboutusParagraph3,
-  eventCalendarTitle,
-} from "../assets/data";
+import { aboutus1 } from "../assets/data";
+import { aboutus2 } from "../assets/data";
+import { aboutus3 } from "../assets/data";
 import EventCalender from "../components/EventCalendar";
 
 const Home: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showEvent, setShowEvent] = useState(false);
   const eventRef = useRef<HTMLDivElement | null>(null);
+  const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+  const apiBase = import.meta.env.VITE_API_URL;
+  useEffect(() => {
+    async function fetchWordings() {
+      try {
+        const res = await fetch(`${apiBase}/api/wordings`);
+        const data = await res.json();
+        const map: { [key: string]: string } = {};
+        data.forEach((item: { KeyName: string; Value: string }) => {
+          map[item.KeyName] = item.Value;
+        });
+        setWordings(map);
+      } catch (error) {
+        console.error("Error fetching wordings:", error);
+      }
+    }
+    fetchWordings();
+  }, []);
 
   const showDonation = () => {
     setIsModalOpen(true);
@@ -43,13 +46,13 @@ const Home: React.FC = () => {
   const handleCloseModal = (data: boolean) => {
     setIsModalOpen(data);
   };
-const handleEvents = () => {
-  setShowEvent(true);
+  const handleEvents = () => {
+    setShowEvent(true);
 
-  setTimeout(() => {
-    eventRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, 100);
-};
+    setTimeout(() => {
+      eventRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
   const handleCloseEvent = () => {
     setShowEvent(false);
   };
@@ -62,57 +65,54 @@ const handleEvents = () => {
           image1={img1}
           image2={img2}
           image3={img3}
-          heading1={heading1}
-          heading2={heading2}
-          heading3={heading3}
+          heading1={wordings.carousel1_title}
+          heading2={wordings.carousel2_title}
+          heading3={wordings.carousel3_title}
           showEvents={handleEvents}
         />
         <CustomHeading
-          heading="About Us"
-          paragraph={paragraph}
+          heading={wordings.about_us_heading}
+          paragraph={wordings.about_us_subtitle}
           backgroundColor="white"
         >
           <CustomCard
-            Card1_Heading={aboutusHeading1}
-            card1_Paragraph_Bold={aboutusParagraph1Bold}
-            card1_Paragraph={aboutusParagraph1}
+            Card1_Heading={wordings.vision_title}
+            card1_Paragraph_Bold={wordings.vision_subtitle}
+            card1_Paragraph={wordings.vision_description}
             image1={aboutus1}
             image2={aboutus2}
             image3={aboutus3}
-            Card2_Heading={aboutusHeading2}
-            card2_Paragraph_Bold={aboutusParagraph2Bold}
-            Card2_Paragraph={aboutusParagraph2}
-            Card3_Heading={aboutusHeading3}
-            Card3_Paragraph={aboutusParagraph3}
+            Card2_Heading={wordings.mission_title}
+            card2_Paragraph_Bold={wordings.mission_subtitle}
+            Card2_Paragraph={wordings.mission_description}
+            Card3_Heading={wordings.our_story_title}
+            Card3_Paragraph={wordings.our_story_description}
             showOrNot={false}
           />
         </CustomHeading>
         {showEvent && (
           <div ref={eventRef}>
             <EventCalender
-              title={eventCalendarTitle}
+              title={wordings.bird_rescue_camp_title}
               close={handleCloseEvent}
             />
           </div>
         )}
         <CustomHeading
-          heading="Get Involved"
-          paragraph={paragraph}
+          heading={wordings.get_involved_title}
+          paragraph={wordings.get_involved_subtitle}
           backgroundColor="#F9FAFB"
         >
           <div className={Styles.getinvolved}>
             <div className={Styles.getinvolved_text}>
               <div className={Styles.getinvolved_text_inner}>
-                <h2>Donate Now !</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                  sapiente culpa asperiores quas dolores.
-                </p>
+                <h2>{wordings.home_bottom_title}</h2>
+                <p>{wordings.home_bottom_subtitle}</p>
                 <Button
                   className={Styles.getinvolved_text_btn}
                   onClick={showDonation}
                 >
-                  <b>Donate Now</b>
+                  <b>{wordings.button_donate_now}</b>
                 </Button>
               </div>
             </div>

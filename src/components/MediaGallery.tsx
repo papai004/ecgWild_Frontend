@@ -38,6 +38,25 @@ const MediaGallery: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
 
+  const apiBase = import.meta.env.VITE_API_URL;
+     const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+         useEffect(() => {
+         async function fetchWordings() {
+           try {
+             const res = await fetch(`${apiBase}/api/wordings`);
+             const data = await res.json();
+             const map: { [key: string]: string } = {};
+             data.forEach((item: { KeyName: string; Value: string }) => {
+               map[item.KeyName] = item.Value;
+             });
+             setWordings(map);
+           } catch (error) {
+             console.error("Error fetching wordings:", error);
+           } 
+         }
+         fetchWordings();
+       }, []);
+
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -75,7 +94,7 @@ const MediaGallery: React.FC = () => {
   return (
     <div className={styles.galleryContainer}>
       <Tabs defaultActiveKey="images" centered>
-        <TabPane tab="Images" key="images">
+        <TabPane tab={wordings.generic_images_label} key="images">
           {loadingImages ? (
             <div className={styles.loadingContainer}>
               <Spin size="large" />
@@ -103,7 +122,7 @@ const MediaGallery: React.FC = () => {
           )}
         </TabPane>
 
-        <TabPane tab="Videos" key="videos">
+        <TabPane tab={wordings.generic_videos_label} key="videos">
           {loadingVideos ? (
             <div className={styles.loadingContainer}>
               <Spin size="large" />
@@ -113,7 +132,7 @@ const MediaGallery: React.FC = () => {
           ) : (
             <>
               <Title level={2} className={styles.sectionTitle}>
-                Video Collection
+                {wordings.generic_video_collection_label}
               </Title>
               <Row gutter={[24, 24]}>
                 {videos.map(video => (

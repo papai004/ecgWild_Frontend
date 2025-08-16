@@ -3,10 +3,7 @@ import { Table, Input, Button, message } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
 import Styles from "../styles/adminpanel.module.css";
 
-type WordingItem = {
-  KeyName: string;
-  Value: string;
-};
+type WordingItem = { KeyName: string; Value: string; };
 
 interface AdminWordingsProps {
   apiBase: string;
@@ -16,23 +13,25 @@ const AdminWordings: React.FC<AdminWordingsProps> = ({ apiBase }) => {
   const [wordings, setWordings] = useState<WordingItem[]>([]);
   const [loadingWordings, setLoadingWordings] = useState(false);
   const [editedWordings, setEditedWordings] = useState<Record<string, string>>({});
+  const [pagination, setPagination] = useState<{ current: number; pageSize: number; total: number }>({
+    current: 1,
+    pageSize: 10,
+    total: 0
+  });
 
   useEffect(() => {
-    fetchWordings();
+    fetchWordings(pagination.current, pagination.pageSize);
   }, []);
 
-  const fetchWordings = async () => {
+  const fetchWordings = async (current = 1, pageSize = 10) => {
     setLoadingWordings(true);
     try {
       const res = await fetch(`${apiBase}/api/wordings`);
-      const data = await res.json();
-      setWordings(data);
+      const data: WordingItem[] = await res.json();
 
-      const editMap: Record<string, string> = {};
-      data.forEach((item: WordingItem) => {
-        editMap[item.KeyName] = item.Value;
-      });
-      setEditedWordings(editMap);
+      setWordings(data);
+      setEditedWordings(Object.fromEntries(data.map(i => [i.KeyName, i.Value])));
+      setPagination(prev => ({ ...prev, current, pageSize, total: data.length }));
     } catch {
       message.error("Error loading wordings");
     } finally {
@@ -41,7 +40,7 @@ const AdminWordings: React.FC<AdminWordingsProps> = ({ apiBase }) => {
   };
 
   const handleWordingChange = (key: string, value: string) => {
-    setEditedWordings((prev) => ({ ...prev, [key]: value }));
+    setEditedWordings(prev => ({ ...prev, [key]: value }));
   };
 
   const saveWording = async (key: string) => {
@@ -51,8 +50,13 @@ const AdminWordings: React.FC<AdminWordingsProps> = ({ apiBase }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ value: editedWordings[key] }),
       });
+      setWordings(prev =>
+        prev.map(item =>
+          item.KeyName === key ? { ...item, Value: editedWordings[key] } : item
+        )
+      );
+
       message.success("Wording updated");
-      fetchWordings();
     } catch {
       message.error("Error saving wording");
     }
@@ -63,6 +67,7 @@ const AdminWordings: React.FC<AdminWordingsProps> = ({ apiBase }) => {
       title: "Key",
       dataIndex: "KeyName",
       key: "KeyName",
+      sorter: (a: WordingItem, b: WordingItem) => a.KeyName.localeCompare(b.KeyName),
     },
     {
       title: "Value",
@@ -97,7 +102,18 @@ const AdminWordings: React.FC<AdminWordingsProps> = ({ apiBase }) => {
         dataSource={wordings}
         loading={loadingWordings}
         rowKey="KeyName"
-        pagination={{ pageSize: 10 }}
+        pagination={{
+          current: pagination.current,
+          pageSize: pagination.pageSize,
+          total: pagination.total,
+          showSizeChanger: true,
+          pageSizeOptions: [5, 10, 20, 50],
+        }}
+        onChange={(pag) => {
+          const current = pag.current ?? 1;
+          const pageSize = pag.pageSize ?? 10;
+          setPagination(prev => ({ ...prev, current, pageSize }));
+        }}
       />
     </div>
   );

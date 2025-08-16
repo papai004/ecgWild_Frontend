@@ -18,6 +18,23 @@ const ContactForm: React.FC = () => {
   
   const [form] = Form.useForm();
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+   const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+    useEffect(() => {
+    async function fetchWordings() {
+      try {
+        const res = await fetch(`${apiBase}/api/wordings`);
+        const data = await res.json();
+        const map: { [key: string]: string } = {};
+        data.forEach((item: { KeyName: string; Value: string }) => {
+          map[item.KeyName] = item.Value;
+        });
+        setWordings(map);
+      } catch (error) {
+        console.error("Error fetching wordings:", error);
+      } 
+    }
+    fetchWordings();
+  }, []);
 
   const values = Form.useWatch([], form);
   useEffect(() => {
@@ -72,7 +89,7 @@ const ContactForm: React.FC = () => {
       <Row gutter={16} className={Styles.responsive_row}>
         <Col xs={24} md={12}>
           <Form.Item
-            label="Name"
+            label={wordings.contact_form_name_label}
             name="name"
             rules={[{ required: true, message: "Please enter your name" }]}
           >
@@ -81,7 +98,7 @@ const ContactForm: React.FC = () => {
         </Col>
         <Col xs={24} md={12}>
           <Form.Item
-            label="Phone Number"
+            label={wordings.contact_form_phone_label}
             name="phone"
             rules={[
               { required: true, message: "Please enter your phone number" },
@@ -93,7 +110,7 @@ const ContactForm: React.FC = () => {
       </Row>
 
       <Form.Item
-        label="Email"
+        label={wordings.contact_form_email_label}
         name="email"
         rules={[
           { required: true, message: "Please enter your email" },
@@ -104,7 +121,7 @@ const ContactForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item
-        label="Message"
+        label={wordings.contact_form_message_label}
         name="message"
         rules={[{ required: true, message: "Please enter your message" }]}
       >
@@ -117,7 +134,7 @@ const ContactForm: React.FC = () => {
           htmlType="submit"
           disabled={isSubmitDisabled}
         >
-          Submit
+          {wordings.contact_form_submit_button}
         </Button>
       </Form.Item>
     </Form>

@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "antd";
 import Navbar from "../components/Navbar";
 import Donation from "../components/donation/Donation";
 import Footer from "../components/Footer";
 import Styles from "../styles/aboutus.module.css";
-import { aboutusHeading, aboutusParagraph } from "../assets/data";
+
 
 // You'll need to import these images - add them to your assets folder
 import { missionImg } from "../assets/data";
@@ -17,12 +17,10 @@ import { saleemImg } from "../assets/data";
 import { stephenImg } from "../assets/data";
 import { saravananImg } from "../assets/data";
 import { shaimaImg } from "../assets/data";
-
 // Advisor photos
 import { drAzeezImg } from "../assets/data";
 import { drVijayImg } from "../assets/data";
 import { drAnirudhaImg } from "../assets/data";
-
 // Partner logos - add these to your assets folder
 import { partner1Logo } from "../assets/data";
 import { partner2Logo } from "../assets/data";
@@ -30,7 +28,25 @@ import { partner3Logo } from "../assets/data";
 
 const AboutUs: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+  const apiBase = import.meta.env.VITE_API_URL;
+  useEffect(() => {
+    async function fetchWordings() {
+      try {
+        const res = await fetch(`${apiBase}/api/wordings`);
+        const data = await res.json();
+        const map: { [key: string]: string } = {};
+        data.forEach((item: { KeyName: string; Value: string }) => {
+          map[item.KeyName] = item.Value;
+        });
+        setWordings(map);
+      } catch (error) {
+        console.error("Error fetching wordings:", error);
+      }
+    }
+    fetchWordings();
+  }, []);
   const showDonation = () => {
     setIsModalOpen(true);
   };
@@ -39,6 +55,26 @@ const AboutUs: React.FC = () => {
     setIsModalOpen(data);
   };
 
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          setLoading(true);
+          // API delay
+          await new Promise((resolve) => setTimeout(resolve, 600));
+        } catch (err) {
+          console.error("Error loading data:", err); 
+        } finally {
+        setLoading(false);
+      }
+      };
+  
+      fetchData();
+    }, []);
+  
+    if (loading) {
+      return <div>Loading data...</div>;
+    }
+
   return (
     <>
       <Navbar />
@@ -46,8 +82,8 @@ const AboutUs: React.FC = () => {
       {/* Hero Section */}
       <div className={Styles.hero_container}>
         <div className={Styles.headingCard}>
-          <h1>{aboutusHeading}</h1>
-          <p>{aboutusParagraph}</p>
+          <h1>{wordings.about_us_title}</h1>
+          <p>{wordings.about_us_subtitle}</p>
           <div className={Styles.headingCard_button}>
             <Button className={Styles.headingCard_btn} onClick={showDonation}>
               <b>Donate Now</b>
@@ -61,31 +97,9 @@ const AboutUs: React.FC = () => {
         <div className={Styles.container}>
           <div className={Styles.about_content}>
             <div className={Styles.about_text}>
-              <p>
-                At Environment Conservation Group, conservation is not only our
-                middle name—it is our heartbeat, the very soul of everything we
-                do. Rooted in the vibrant city of Coimbatore and active across
-                India, we are a passionate collective of environmentalists,
-                educators, scientists, and volunteers dedicated to protecting
-                our planet's precious biodiversity and building a more
-                sustainable future for all.
-              </p>
-              <p>
-                Founded on the belief that awareness is the first step toward
-                meaningful action, we engage communities, inspire youth, and
-                collaborate with institutions to address some of the most urgent
-                environmental challenges of our time. Whether it's saving
-                endangered species, protecting fragile ecosystems, or promoting
-                sustainable living practices, our work is grounded in a deep
-                respect for nature and a commitment to science-based
-                conservation.
-              </p>
-              <p>
-                We believe that education is empowerment. Through interactive
-                workshops, field visits, documentary screenings, and school
-                programs, we equip the next generation with the knowledge and
-                tools they need to become stewards of the environment.
-              </p>
+              <p>{wordings.about_us_description_1}</p>
+              <p>{wordings.about_us_description_2}</p>
+              <p>{wordings.about_us_description_3}</p>
             </div>
           </div>
         </div>
@@ -95,7 +109,7 @@ const AboutUs: React.FC = () => {
       <section className={Styles.mission_vision_section}>
         <div className={Styles.container}>
           <div className={Styles.section_header}>
-            <h2>Mission & Vision</h2>
+            <h2>{wordings.mission_vision}</h2>
           </div>
 
           <div className={Styles.mission_vision_grid}>
@@ -105,38 +119,18 @@ const AboutUs: React.FC = () => {
                 <img src={missionImg} alt="Our Mission" />
               </div>
               <div className={Styles.card_content}>
-                <h3>Mission Statement</h3>
-                <p>
-                  To inspire and empower individuals, especially the youth, to
-                  protect nature through education, community engagement, and
-                  conservation action.
-                </p>
-                <p>
-                  We strive to bridge the gap between science, indigenous
-                  wisdom, and public participation by creating awareness about
-                  wildlife, climate change, and sustainable living. Through
-                  grassroots outreach, research, and field expeditions, we
-                  promote ecological balance and foster a generation of
-                  environmentally conscious citizens.
-                </p>
+                <h3>{wordings.mission_statement_part1}</h3>
+                <p>{wordings.mission_statement_part2}</p>
+                <p>{wordings.mission_statement_part3}</p>
               </div>
             </div>
 
             {/* Vision */}
             <div className={Styles.vision_card}>
               <div className={Styles.card_content}>
-                <h3>Vision</h3>
-                <p>
-                  A future where communities live in harmony with nature,
-                  empowered by knowledge and united in action for a sustainable
-                  planet.
-                </p>
-                <p>
-                  We envision an India where every individual, from tribal
-                  regions to urban centers, plays an active role in conserving
-                  biodiversity, mitigating climate change, and nurturing the
-                  Earth for generations to come.
-                </p>
+                <h3>{wordings.vision_statement_part1}</h3>
+                <p>{wordings.vision_statement_part2}</p>
+                <p>{wordings.vision_statement_part3}</p>
               </div>
               <div className={Styles.card_image}>
                 <img src={visionImg} alt="Our Vision" />
@@ -154,23 +148,9 @@ const AboutUs: React.FC = () => {
               <img src={seekExpeditionImg} alt="SEEK Expeditions" />
             </div>
             <div className={Styles.seek_text}>
-              <h2>SEEK Expeditions</h2>
-              <p>
-                One of our flagship initiatives,{" "}
-                <strong>SEEK Expeditions</strong> stands as a vibrant testament
-                to our mission in motion. This dynamic, countrywide journey
-                unites scientists, conservationists, storytellers, and local
-                communities in a shared quest to uncover and document the
-                real-time impact of conservation efforts across India's richly
-                diverse ecological landscapes.
-              </p>
-              <p>
-                Blending cutting-edge science with the wisdom of indigenous
-                traditions and the lived experiences of people on the ground,
-                SEEK crafts powerful, immersive narratives that do more than
-                just inform—they inspire action, ignite curiosity, and build a
-                deeper connection to the natural world.
-              </p>
+              <h2>{wordings.seek_expeditions_part1}</h2>
+              <p>{wordings.seek_expeditions_part2}</p>
+              <p>{wordings.seek_expeditions_part3}</p>
             </div>
           </div>
         </div>
@@ -181,23 +161,9 @@ const AboutUs: React.FC = () => {
         <div className={Styles.container}>
           <div className={Styles.impact_content}>
             <div className={Styles.impact_text}>
-              <h2>Our Impact</h2>
-              <p>
-                At Environment Conservation Group, our impact is measured not
-                just in numbers, but in the lives we touch and the ecosystems we
-                help protect. Over the years, we have reached thousands of
-                students through our education programs, empowered local
-                communities to lead conservation efforts, and contributed
-                critical data for wildlife protection and policy change.
-              </p>
-              <p>
-                Our initiatives have led to reduced roadkill in key areas,
-                revival of local water bodies, and greater awareness of
-                sustainable practices in schools and neighborhoods. Most
-                importantly, we've inspired a growing network of young leaders,
-                volunteers, and citizens who are now champions of change for a
-                greener, more resilient planet.
-              </p>
+              <h2>{wordings.our_impact_part1}</h2>
+              <p>{wordings.our_impact_part2}</p>
+              <p>{wordings.our_impact_part3}</p>
             </div>
             <div className={Styles.impact_image}>
               <img src={impactImg} alt="Our Impact" />
@@ -210,11 +176,8 @@ const AboutUs: React.FC = () => {
       <section className={Styles.team_section}>
         <div className={Styles.container}>
           <div className={Styles.section_header}>
-            <h2>Our Team</h2>
-            <p>
-              Meet the dedicated professionals working to protect our
-              environment
-            </p>
+            <h2>{wordings.our_team_part1}</h2>
+            <p>{wordings.our_team_part2}</p>
           </div>
 
           <div className={Styles.team_grid}>
@@ -223,8 +186,8 @@ const AboutUs: React.FC = () => {
                 <img src={saleemImg} alt="Saleem" />
               </div>
               <div className={Styles.member_info}>
-                <h4>Saleem</h4>
-                <p className={Styles.member_role}>Team Member</p>
+                <h4>{wordings.membername1}</h4>
+                <p className={Styles.member_role}>{wordings.designation1}</p>
               </div>
             </div>
 
@@ -233,8 +196,8 @@ const AboutUs: React.FC = () => {
                 <img src={stephenImg} alt="Stephen" />
               </div>
               <div className={Styles.member_info}>
-                <h4>Stephen</h4>
-                <p className={Styles.member_role}>Team Member</p>
+                <h4>{wordings.membername2}</h4>
+                <p className={Styles.member_role}>{wordings.designation2}</p>
               </div>
             </div>
 
@@ -243,8 +206,8 @@ const AboutUs: React.FC = () => {
                 <img src={saravananImg} alt="Saravanan" />
               </div>
               <div className={Styles.member_info}>
-                <h4>Saravanan</h4>
-                <p className={Styles.member_role}>Team Member</p>
+                <h4>{wordings.membername3}</h4>
+                <p className={Styles.member_role}>{wordings.designation3}</p>
               </div>
             </div>
 
@@ -253,23 +216,25 @@ const AboutUs: React.FC = () => {
                 <img src={shaimaImg} alt="Shaima" />
               </div>
               <div className={Styles.member_info}>
-                <h4>Shaima</h4>
-                <p className={Styles.member_role}>Team Member</p>
+                <h4>{wordings.membername4}</h4>
+                <p className={Styles.member_role}>{wordings.designation4}</p>
               </div>
             </div>
           </div>
 
           {/* Advisors Section */}
           <div className={Styles.advisors_section}>
-            <h3>Our Advisors</h3>
+            <h3>{wordings.our_advisors_title}</h3>
             <div className={Styles.advisors_grid}>
               <div className={Styles.advisor_member}>
                 <div className={Styles.member_image}>
                   <img src={drAzeezImg} alt="Dr. P A Azeez" />
                 </div>
                 <div className={Styles.member_info}>
-                  <h4>Dr. P A Azeez</h4>
-                  <p className={Styles.member_role}>Advisor</p>
+                  <h4>{wordings.advisor_name1}</h4>
+                  <p className={Styles.member_role}>
+                    {wordings.advisor_designation1}
+                  </p>
                 </div>
               </div>
 
@@ -278,8 +243,10 @@ const AboutUs: React.FC = () => {
                   <img src={drVijayImg} alt="Dr. Vijay Kumar" />
                 </div>
                 <div className={Styles.member_info}>
-                  <h4>Dr. Vijay Kumar</h4>
-                  <p className={Styles.member_role}>Advisor</p>
+                  <h4>{wordings.advisor_name2}</h4>
+                  <p className={Styles.member_role}>
+                    {wordings.advisor_designation2}
+                  </p>
                 </div>
               </div>
 
@@ -288,8 +255,10 @@ const AboutUs: React.FC = () => {
                   <img src={drAnirudhaImg} alt="Dr. Anirudha" />
                 </div>
                 <div className={Styles.member_info}>
-                  <h4>Dr. Anirudha</h4>
-                  <p className={Styles.member_role}>Advisor</p>
+                  <h4>{wordings.advisor_name3}</h4>
+                  <p className={Styles.member_role}>
+                    {wordings.advisor_designation3}
+                  </p>
                 </div>
               </div>
             </div>
@@ -301,19 +270,9 @@ const AboutUs: React.FC = () => {
       <section className={Styles.collaboration_section}>
         <div className={Styles.container}>
           <div className={Styles.section_header}>
-            <h2>Collaboration for Conservation</h2>
-            <p>
-              At Environment Conservation Group (ECG), we believe that
-              protecting the planet is a collective effort. Our journey has been
-              enriched by the support, knowledge, and contributions of our
-              partners—ranging from conservation organizations and scientific
-              institutions to private enterprises and local communities.
-            </p>
-            <p>
-              Each partnership helps amplify our impact, reach wider audiences,
-              and combine expertise to tackle the interconnected challenges of
-              climate change, biodiversity loss, and environmental degradation.
-            </p>
+            <h2>{wordings.collaboration_for_conservation_title}</h2>
+            <p>{wordings.collaboration_for_conservation_description1}</p>
+            <p>{wordings.collaboration_for_conservation_description2}</p>
           </div>
 
           <div className={Styles.partners_grid}>
@@ -334,18 +293,13 @@ const AboutUs: React.FC = () => {
       <section className={Styles.cta_section}>
         <div className={Styles.container}>
           <div className={Styles.cta_content}>
-            <h2>Join Our Movement</h2>
+            <h2>{wordings.join_our_movement_title}</h2>
             <p>
-              In a time of climate uncertainty and ecological crisis, our
-              message is one of hope, action, and collective responsibility. We
-              invite every citizen—student, farmer, policymaker, or business
-              leader—to walk with us on this path. Because conservation is not a
-              task for a few—it's a movement for all.
+              {wordings.join_our_movement_description}
             </p>
             <p>
               <strong>
-                After all, environment is our first name, and conservation is
-                our promise.
+                {wordings.join_our_movement_tagline}
               </strong>
             </p>
           </div>
