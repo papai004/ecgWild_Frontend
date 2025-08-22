@@ -9,6 +9,7 @@ const Navbar = () => {
   const [activeTab, setActiveTab] = useState("/");
   const apiBase = import.meta.env.VITE_API_URL;
   const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchWordings() {
       try {
@@ -38,7 +39,6 @@ const Navbar = () => {
   const isActive = (path: string) => {
     return activeTab === path ? Styles.active : "";
   };
-  const navigate = useNavigate();
   return (
     <>
       <div className={Styles.navbar}>

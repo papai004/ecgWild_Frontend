@@ -11,27 +11,31 @@ import ContactForm from "../components/ContactForm";
 import Styles from "../styles/contactus.module.css";
 import Footer from "../components/Footer";
 import { locationImg } from "../assets/data";
+import { useEventContext } from "../context/EventContext";
+
 
 const ContactUs: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-   const apiBase = import.meta.env.VITE_API_URL;
-   const [wordings, setWordings] = useState<{ [key: string]: string }>({});
-       useEffect(() => {
-       async function fetchWordings() {
-         try {
-           const res = await fetch(`${apiBase}/api/wordings`);
-           const data = await res.json();
-           const map: { [key: string]: string } = {};
-           data.forEach((item: { KeyName: string; Value: string }) => {
-             map[item.KeyName] = item.Value;
-           });
-           setWordings(map);
-         } catch (error) {
-           console.error("Error fetching wordings:", error);
-         } 
-       }
-       fetchWordings();
-     }, []);
+  const apiBase = import.meta.env.VITE_API_URL;
+  const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+  const { openEvent } = useEventContext();
+  
+  useEffect(() => {
+    async function fetchWordings() {
+      try {
+        const res = await fetch(`${apiBase}/api/wordings`);
+        const data = await res.json();
+        const map: { [key: string]: string } = {};
+        data.forEach((item: { KeyName: string; Value: string }) => {
+          map[item.KeyName] = item.Value;
+        });
+        setWordings(map);
+      } catch (error) {
+        console.error("Error fetching wordings:", error);
+      }
+    }
+    fetchWordings();
+  }, []);
 
   const showDonation = () => {
     setIsModalOpen(true);
@@ -50,6 +54,13 @@ const ContactUs: React.FC = () => {
           <div className={Styles.headingCard_button}>
             <Button className={Styles.headingCard_btn} onClick={showDonation}>
               <b>{wordings.button_donate_now}</b>
+            </Button>
+            <Button
+              style={{ marginLeft: 6 }}
+              className={Styles.headingCard_btn}
+              onClick={openEvent}
+            >
+              <b>{wordings.button_events}</b>
             </Button>
           </div>
         </div>

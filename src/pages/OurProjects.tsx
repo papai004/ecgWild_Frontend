@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button } from "antd";
 import CustomCard from "../components/CustomCard";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -17,7 +18,7 @@ import {
 } from "../assets/data";
 import Donation from "../components/donation/Donation";
 import CustomCarousel from "../components/CustomCarousel";
-import { Button } from "antd";
+import { useEventContext } from "../context/EventContext";
 
 interface CarouselItem {
   id: number;
@@ -32,6 +33,8 @@ const OurProjects: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const apiBase = import.meta.env.VITE_API_URL;
   const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+  const { openEvent } = useEventContext();
+
   const showDonation = () => {
     setIsModalOpen(true);
   };
@@ -139,6 +142,9 @@ const OurProjects: React.FC = () => {
             <Button className={Styles.headingCard_btn} onClick={showDonation}>
               <b>{wordings.button_donate_now}</b>
             </Button>
+            <Button style={{marginLeft: 6}} className={Styles.headingCard_btn} onClick={openEvent}>
+              <b>{wordings.button_events}</b>
+            </Button>
           </div>
         </div>
         <Donation open={isModalOpen} close={handleCloseModal} />
@@ -160,7 +166,10 @@ const OurProjects: React.FC = () => {
           Card5_Paragraph={wordings.project5_description}
           showOrNot={true}
         />
-        <CustomCarousel heading={wordings.recent_projects_label} items={items} />
+        <CustomCarousel
+          heading={wordings.recent_projects_label}
+          items={items}
+        />
       </div>
       <Footer />
     </>

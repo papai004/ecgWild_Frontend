@@ -12,6 +12,7 @@
 
 .navbar_left_content {
     height: 10vh;
+    cursor: pointer;
 }
 
 .navbar_img {

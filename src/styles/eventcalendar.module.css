@@ -30,15 +30,31 @@
   cursor: pointer;
   transition: color 0.3s ease;
 }
-
 .closebtn:hover {
   color: red;
 }
 
+.event_date {
+  font-size: 1rem;
+  color: #444;
+}
+
+.event_location {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
 
 @media (max-width: 768px) {
   .card_container {
     margin: 1rem;
     padding: 0.8rem;
   }
+}
+
+.ant-carousel .slick-dots li button {
+  background: #3fb55e !important;
+}
+.ant-carousel .slick-dots li.slick-active button {
+  background: #1d8348 !important;
 }

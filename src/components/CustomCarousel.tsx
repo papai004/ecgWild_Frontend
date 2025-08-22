@@ -1,8 +1,6 @@
-import React from 'react';
-import { Carousel, Typography } from 'antd';
-import styles from '../styles/customCarousel.module.css';
-
-const { Title, Paragraph } = Typography;
+import React from "react";
+import { Carousel } from "antd";
+import styles from "../styles/customCarousel.module.css";
 
 interface CarouselItem {
   id: number;
@@ -16,10 +14,7 @@ interface CustomCarouselProps {
   items: CarouselItem[];
 }
 
-const CustomCarousel: React.FC<CustomCarouselProps> = ({ 
-  heading, 
-  items 
-}) => {
+const CustomCarousel: React.FC<CustomCarouselProps> = ({ heading, items }) => {
   const carouselSettings = {
     dots: true,
     infinite: true,
@@ -56,18 +51,24 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({
   return (
     <div className={styles.carouselContainer}>
       <h2 className={styles.heading}>{heading}</h2>
-      
+
       <Carousel className={styles.styledCarousel} {...carouselSettings}>
         {items.map((item) => (
           <div key={item.id} className={styles.carouselItemWrapper}>
-            <div className={styles.cardItem}>
-              <img 
-                src={item.imageUrl} 
-                alt={item.title} 
-                className={styles.cardImage} 
-              />
-              <Title level={4} className={styles.cardTitle}>{item.title}</Title>
-              <Paragraph className={styles.cardContent}>{item.content}</Paragraph>
+            <div className={styles.card}>
+
+              <div className={`${styles.cardFace} ${styles.cardFront}`}>
+                <img
+                  src={item.imageUrl}
+                  alt={item.title}
+                  className={styles.cardImage}
+                />
+              </div>
+
+              <div className={`${styles.cardFace} ${styles.cardBack}`}>
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+                <p className={styles.cardContent}>{item.content}</p>
+              </div>
             </div>
           </div>
         ))}

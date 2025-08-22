@@ -5,7 +5,6 @@ import Donation from "../components/donation/Donation";
 import Footer from "../components/Footer";
 import Styles from "../styles/aboutus.module.css";
 
-
 // You'll need to import these images - add them to your assets folder
 import { missionImg } from "../assets/data";
 import { visionImg } from "../assets/data";
@@ -25,12 +24,16 @@ import { drAnirudhaImg } from "../assets/data";
 import { partner1Logo } from "../assets/data";
 import { partner2Logo } from "../assets/data";
 import { partner3Logo } from "../assets/data";
+import { useEventContext } from "../context/EventContext";
+
 
 const AboutUs: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [wordings, setWordings] = useState<{ [key: string]: string }>({});
+  const { openEvent } = useEventContext();
   const apiBase = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     async function fetchWordings() {
       try {
@@ -55,25 +58,25 @@ const AboutUs: React.FC = () => {
     setIsModalOpen(data);
   };
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          setLoading(true);
-          // API delay
-          await new Promise((resolve) => setTimeout(resolve, 600));
-        } catch (err) {
-          console.error("Error loading data:", err); 
-        } finally {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        // API delay
+        await new Promise((resolve) => setTimeout(resolve, 600));
+      } catch (err) {
+        console.error("Error loading data:", err);
+      } finally {
         setLoading(false);
       }
-      };
-  
-      fetchData();
-    }, []);
-  
-    if (loading) {
-      return <div>Loading data...</div>;
-    }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading data...</div>;
+  }
 
   return (
     <>
@@ -87,6 +90,13 @@ const AboutUs: React.FC = () => {
           <div className={Styles.headingCard_button}>
             <Button className={Styles.headingCard_btn} onClick={showDonation}>
               <b>Donate Now</b>
+            </Button>
+            <Button
+              style={{ marginLeft: 6 }}
+              className={Styles.headingCard_btn}
+              onClick={openEvent}
+            >
+              <b>{wordings.button_events}</b>
             </Button>
           </div>
         </div>
@@ -294,13 +304,9 @@ const AboutUs: React.FC = () => {
         <div className={Styles.container}>
           <div className={Styles.cta_content}>
             <h2>{wordings.join_our_movement_title}</h2>
+            <p>{wordings.join_our_movement_description}</p>
             <p>
-              {wordings.join_our_movement_description}
-            </p>
-            <p>
-              <strong>
-                {wordings.join_our_movement_tagline}
-              </strong>
+              <strong>{wordings.join_our_movement_tagline}</strong>
             </p>
           </div>
         </div>

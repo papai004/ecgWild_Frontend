@@ -22,8 +22,8 @@ const Carousels: React.FC<Props> = ({
   heading3,
   showEvents
 }) => {
-  const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
+  const onChange = (_currentSlide: number) => {
+    // console.log(currentSlide);
   };
 
   const apiBase = import.meta.env.VITE_API_URL;
