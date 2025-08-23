@@ -19,6 +19,7 @@ import {
 import Donation from "../components/donation/Donation";
 import CustomCarousel from "../components/CustomCarousel";
 import { useEventContext } from "../context/EventContext";
+import { spinningLogo } from "../assets/data";
 
 interface CarouselItem {
   id: number;
@@ -80,9 +81,20 @@ const OurProjects: React.FC = () => {
     fetchWordings();
   }, []);
 
-  if (loading) {
-    return <div>Loading data...</div>;
-  }
+    if (loading) {
+        return (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh", 
+            }}
+          >
+            <img src={spinningLogo} alt="Loading..." />
+          </div>
+        );
+      }
 
   if (error) {
     return <div>Error: {error}</div>;

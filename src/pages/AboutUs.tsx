@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Donation from "../components/donation/Donation";
 import Footer from "../components/Footer";
 import Styles from "../styles/aboutus.module.css";
+import { spinningLogo } from "../assets/data";
 
 // You'll need to import these images - add them to your assets folder
 import { missionImg } from "../assets/data";
@@ -25,7 +26,6 @@ import { partner1Logo } from "../assets/data";
 import { partner2Logo } from "../assets/data";
 import { partner3Logo } from "../assets/data";
 import { useEventContext } from "../context/EventContext";
-
 
 const AboutUs: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,7 +63,7 @@ const AboutUs: React.FC = () => {
       try {
         setLoading(true);
         // API delay
-        await new Promise((resolve) => setTimeout(resolve, 600));
+        await new Promise((resolve) => setTimeout(resolve, 800));
       } catch (err) {
         console.error("Error loading data:", err);
       } finally {
@@ -75,7 +75,18 @@ const AboutUs: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading data...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh", 
+        }}
+      >
+        <img src={spinningLogo} alt="Loading..." />
+      </div>
+    );
   }
 
   return (

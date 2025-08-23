@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { Button } from "antd";
 import MediaGallery from "../components/MediaGallery";
 import { useEventContext } from "../context/EventContext";
+import { spinningLogo } from "../assets/data";
 import {
   activity1,
   activity2,
@@ -61,7 +62,7 @@ const OurGallery: React.FC = () => {
       try {
         setLoading(true);
         // API delay
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 800));
         setError(null);
       } catch (err) {
         console.error("Error loading data:", err);
@@ -75,8 +76,19 @@ const OurGallery: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading data...</div>;
-  }
+      return (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh", 
+          }}
+        >
+          <img src={spinningLogo} alt="Loading..." />
+        </div>
+      );
+    }
 
   if (error) {
     return <div>Error: {error}</div>;

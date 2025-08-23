@@ -34,17 +34,13 @@
   color: red;
 }
 
-.event_date {
-  font-size: 1rem;
-  color: #444;
-}
-
+.event_date,
 .event_location {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center; 
+  justify-content: center;   
+  gap: 6px; 
 }
-
 @media (max-width: 768px) {
   .card_container {
     margin: 1rem;

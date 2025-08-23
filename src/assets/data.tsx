@@ -16,6 +16,7 @@ export const image8 = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/
 export const QRCode = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/UPI.png";
 export const donationlogo = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/donationlogo.svg";
 export const logo = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
+export const spinningLogo = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo_spinning.gif";
 export const locationImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/location.jpeg";
 export const missionImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";
 export const visionImg = "https://raw.githubusercontent.com/dhrubaghosh/ECG_images/refs/heads/main/logo.jpg";

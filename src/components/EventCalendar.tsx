@@ -2,6 +2,7 @@ import { CloseCircleOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import Styles from "../styles/eventcalendar.module.css";
 import CountdownTimer from "./CountdownTimer";
+import { IoCalendar } from "react-icons/io5";
 
 type EventCalendarProps = {
   title: string;
@@ -25,7 +26,10 @@ const EventCalendar = (props: EventCalendarProps) => {
         )
       }
     >
-      <p className={Styles.event_date}>📅 {eventDate}</p>
+      <p className={Styles.event_date}> 
+        <IoCalendar className=""/> {eventDate}
+        
+        </p>
       <p className={Styles.event_location}>📍 {location}</p>
 
       <div className={Styles.container} style={{ width: "100%" }}>

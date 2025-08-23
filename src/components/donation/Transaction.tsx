@@ -1,16 +1,16 @@
-import React from 'react';
-import { Button } from 'antd';
-import Styles from '../../styles/transaction.module.css';
-import {QRCode} from "../../assets/data"
+import React from "react";
+import { Button } from "antd";
+import Styles from "../../styles/transaction.module.css";
+import { QRCode } from "../../assets/data";
 
 type Props = {
-  prevBtn: (data: boolean) => void,
-}
+  prevBtn: (data: boolean) => void;
+};
 
-const Transaction: React.FC<Props> = ({prevBtn}) => {
+const Transaction: React.FC<Props> = ({ prevBtn }) => {
   const prevBtnHandler = () => {
     prevBtn(true);
-  }
+  };
 
   // const handleQRDownload = async () => {
   //   try {
@@ -22,8 +22,7 @@ const Transaction: React.FC<Props> = ({prevBtn}) => {
   //     link.download = 'ecg-qr-code.png';
   //     document.body.appendChild(link);
   //     link.click();
-      
-      
+
   //     document.body.removeChild(link);
   //     window.URL.revokeObjectURL(url);
   //   } catch (error) {
@@ -34,24 +33,31 @@ const Transaction: React.FC<Props> = ({prevBtn}) => {
 
   const handleWhatsAppShare = () => {
     const message = encodeURIComponent("Here's my QR code for payment");
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${message}%20${encodeURIComponent(QRCode)}`;
-    window.open(whatsappUrl, '_blank');
-  }
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${message}%20${encodeURIComponent(
+      QRCode
+    )}`;
+    window.open(whatsappUrl, "_blank");
+  };
 
   return (
-    <div className={Styles.container}>
-      <img src={QRCode} className={Styles.qrCode} width='70%'/>
-      <div className={Styles.border}></div>
-      <div className={Styles.btn_container}>
-        {/* <Button className={Styles.btn} onClick={handleQRDownload}>
+    <div>
+      <p>
+        Tap the QR code to download, open it in your UPI app, and pay as you wish.
+      </p>
+      <div className={Styles.container}>
+        <img src={QRCode} className={Styles.qrCode} width="70%" />
+        <div className={Styles.border}></div>
+        <div className={Styles.btn_container}>
+          {/* <Button className={Styles.btn} onClick={handleQRDownload}>
           Download QR
         </Button> */}
-        <Button className={Styles.btn} onClick={handleWhatsAppShare}>
-          Share on WhatsApp
-        </Button>
-        <Button className={Styles.btn} onClick={prevBtnHandler}>
-          Go Back
-        </Button>
+          <Button className={Styles.btn} onClick={handleWhatsAppShare}>
+            Share on WhatsApp
+          </Button>
+          <Button className={Styles.btn} onClick={prevBtnHandler}>
+            Go Back
+          </Button>
+        </div>
       </div>
     </div>
   );
